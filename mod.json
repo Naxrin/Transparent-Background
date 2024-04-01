@@ -1,17 +1,42 @@
 {
-	"geode": "2.0.0-beta.12",
-	"gd": "2.204",
-	"version": "v1.0.0",
+	"geode": "2.0.0-beta.23",
+	"gd": {
+		"win":"2.204",
+		"android": "2.205",
+		"mac":"2.200"
+	},
+	"version": "v1.1.1",
 	"id": "naxrin.transparent",
-	"name": "Transparent BG/List",
-	"developer": "Naxrin",
-	"description": "\"A mod to remove the blue effect of background image.\"",
+	"name": "Transparent BG",
+	"developer": "Naxrin & Lwhe",
+	"description": "\"This mod removes the blue blending of background image so players can enjoy their picked background images better.\"",
 	"repository":"https://github.com/Naxrin/Transparent-BG-Geode",
+	"tags":["cosmetic"],
 	"dependencies": [
 			{
 				"id": "geode.node-ids",
 				"version": "v1.0.0"			
-			}
-
-	]
+			}],
+	"settings":{
+		"BG": {
+            "name": "Transparent BG",
+            "description": "Removes the blue blendings of Background",
+            "type": "bool",
+            "default": true
+        },
+		"List": {
+            "name": "Transparent List (Experiment)",
+            "description": "Removes the yellow blendings of List Menus. But I recommend alphalaneous' Transparent List more.",
+            "type": "bool",
+            "default": true
+        },
+		"Circle": {
+            "name": "Black Loading Circle",
+            "description": "Recolor the loading circle thing.\n0->Disable\n1->white line in black round\n2->black line in white round.\nI've tried my best to fix the randomly caused crashes, turn it off and report that to Naxrin via GD message if this mod still crashes your game, I'm sry for that.",
+            "type": "int",
+            "default": 0,
+			"min":0,
+			"max":2
+        }
+	}
 }
