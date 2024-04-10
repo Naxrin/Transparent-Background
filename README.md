@@ -7,8 +7,7 @@ Welcome to report bugs anyway!
 
 Transparent BG is by Naxrin, and Transparent List is by Lwhe.
 Inspired by Alphalaneous' version, we made a fix.
-https://github.com/Alphalaneous/Transparent-Lists
-But we recommend his own Transparent List more.
+But we recommend alphalaneous' Transparent List more.
 
 Neither of us is pro coder, we do it just bcoz both fascinating thing is yet not published in Mega Hack v8 up to now.
 Neither of us have a mac so this mod is not yet confirmed to work well in mac. Contact Naxrin via GD message if the mod breaks down on your mac.

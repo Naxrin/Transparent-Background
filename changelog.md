@@ -1,3 +1,6 @@
+# 1.3.0
+You can customize loading circle colors to fix your background theme
+Switch to dark theme for gauntlet/daily/weekly levels
 # 1.2.0
 Multi-platfrom support!
 Fixed some crashed I hope
