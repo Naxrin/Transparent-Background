@@ -32,12 +32,16 @@ class $modify(GJGarageLayer) {
 
 #include <Geode/modify/EditLevelLayer.hpp>
 class $modify(EditLevelLayer) {
-    bool init(GJGameLevel* p0) {
-		if (!EditLevelLayer::init(p0)) return false;
+    bool init(GJGameLevel* level) {
+		if (!EditLevelLayer::init(level)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
 			auto background = static_cast<CCSprite *>(this->getChildByID("background"));
 			ccColor3B cb = { 255, 255, 255 };
 			background->setColor(cb);
+		}
+		if (Mod::get()->getSettingValue<bool>("frame")){
+			this->getChildByID("level-name-background")->setVisible(false);
+			this->getChildByID("description-background")->setVisible(false);
 		}
 		return true;
     }
@@ -45,8 +49,8 @@ class $modify(EditLevelLayer) {
 
 #include <Geode/modify/LevelBrowserLayer.hpp>
 class $modify(LevelBrowserLayer) {
-    bool init(GJSearchObject* p0) {
-		if (!LevelBrowserLayer::init(p0)) return false;
+    bool init(GJSearchObject* search) {
+		if (!LevelBrowserLayer::init(search)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
 			auto background = static_cast<CCSprite *>(this->getChildByID("background"));
 			ccColor3B cb = { 255, 255, 255 };
@@ -58,14 +62,19 @@ class $modify(LevelBrowserLayer) {
 
 #include <Geode/modify/LevelInfoLayer.hpp>
 class $modify(LevelInfoLayer) {
-    bool init(GJGameLevel* p0, bool p1) {
-		if (!LevelInfoLayer::init(p0, p1)) return false;
+    bool init(GJGameLevel* level, bool p1) {
+		if (!LevelInfoLayer::init(level, p1)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
+			
 			auto background = static_cast<CCSprite *>(this->getChildByID("background"));
-			ccColor3B cb = { 255, 255, 255 };
+			ccColor3B cb;
+			if (Mod::get()->getSettingValue<bool>("dark") && (level->m_gauntletLevel || level->m_gauntletLevel2 || this->getChildByID("daily-label")))
+				cb = { 100, 100, 100 };
+			else
+				cb = { 255, 255, 255 };
 			background->setColor(cb);
 		}
-	return true;
+		return true;
     }
     void onPlay(cocos2d::CCObject* sender) {
         LevelInfoLayer::onPlay(sender);
@@ -95,12 +104,19 @@ class $modify(LevelInfoLayer) {
 
 #include <Geode/modify/LevelSearchLayer.hpp>
 class $modify(LevelSearchLayer) {
-    bool init(int p0) {
-		if (!LevelSearchLayer::init(p0)) return false;
+    bool init(int p) {
+		if (!LevelSearchLayer::init(p)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
 			auto background = static_cast<CCSprite *>(this->getChildByID("background"));
 			ccColor3B cb = { 255, 255, 255 };
 			background->setColor(cb);
+		}
+		if (Mod::get()->getSettingValue<bool>("frame")){
+			this->getChildByID("level-search-bg")->setVisible(false);
+			this->getChildByID("level-search-bar-bg")->setVisible(false);
+			this->getChildByID("quick-search-bg")->setVisible(false);
+			this->getChildByID("difficulty-filters-bg")->setVisible(false);
+			this->getChildByID("length-filters-bg")->setVisible(false);
 		}
 	return true;
     }
@@ -108,8 +124,8 @@ class $modify(LevelSearchLayer) {
 
 #include <Geode/modify/LeaderboardsLayer.hpp>
 class $modify(LeaderboardsLayer) {
-    bool init(LeaderboardState p0) {
-		if (!LeaderboardsLayer::init(p0)) return false;
+    bool init(LeaderboardState state) {
+		if (!LeaderboardsLayer::init(state)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
 			auto background = static_cast<CCSprite *>(this->getChildByID("background"));
 			ccColor3B cb = { 255, 255, 255 };
@@ -121,8 +137,8 @@ class $modify(LeaderboardsLayer) {
 
 #include <Geode/modify/LevelListLayer.hpp>
 class $modify(LevelListLayer) {
-    bool init(GJLevelList* p0) {
-		if (!LevelListLayer::init(p0)) return false;
+    bool init(GJLevelList* list) {
+		if (!LevelListLayer::init(list)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
 			auto background = static_cast<CCSprite *>(this->getChildren()->objectAtIndex(0));
 			ccColor3B cb = { 255, 255, 255 };
@@ -134,17 +150,21 @@ class $modify(LevelListLayer) {
 
 #include <Geode/modify/GauntletSelectLayer.hpp>
 class $modify(GauntletSelectLayer) {
-    bool init(int p0) {
-		if (!GauntletSelectLayer::init(p0)) return false;
+    bool init(int p) {
+		if (!GauntletSelectLayer::init(p)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
 			auto background = static_cast<CCSprite *>(this->getChildren()->objectAtIndex(0));
-			ccColor3B cb = { 255, 255, 255 };
+			ccColor3B cb;
+			if (Mod::get()->getSettingValue<bool>("dark"))
+				cb = { 100, 100, 100 };
+			else
+				cb = { 255, 255, 255 };
 			background->setColor(cb);
 		}
 		return true;
     }
 };
-
+/*
 // Transparent Lists
 #include <Geode/modify/GJListLayer.hpp>
 class $modify(GJListLayer) {
@@ -160,7 +180,7 @@ class $modify(GJListLayer) {
 		return ret;
 	}
 };
-/*
+
 #include <Geode/modify/LevelCell.hpp>
 class $modify(LevelCell) {
 
@@ -184,12 +204,13 @@ class $modify(LevelCell) {
 
 
 // real
+/*
 #include <Geode/modify/LevelCell.hpp>
 class $modify(LevelCell) {
-   TodoReturn loadFromLevel(GJGameLevel* p0) {
-    LevelCell::loadFromLevel(p0);	
-	if (Mod::get()->getSettingValue<bool>("List")){
-        auto child = static_cast<CCLayerColor *>(this->getChildren()->objectAtIndex(0));
+   	TodoReturn loadFromLevel(GJGameLevel* p0) {
+	LevelCell::loadFromLevel(p0);	
+		if (Mod::get()->getSettingValue<bool>("List")){
+			auto child = static_cast<CCLayerColor *>(this->getChildren()->objectAtIndex(0));
 			if(child->getColor() == ccColor3B{161,88,44}){
 				child->setColor({0,0,0});
 			}
@@ -199,56 +220,59 @@ class $modify(LevelCell) {
 			child->setOpacity(50.0f);
 			//this->updateLayout();
 		}
-   }
+    }
 };
 
 #include <Geode/modify/GJScoreCell.hpp>
 class $modify(GJScoreCell) {
-   TodoReturn loadFromScore(GJUserScore* p0) {
-    GJScoreCell::loadFromScore(p0);	
-	if (Mod::get()->getSettingValue<bool>("List")){
-        auto child = static_cast<CCLayerColor *>(this->getChildren()->objectAtIndex(0));
-		if(child->getColor() == ccColor3B{161,88,44}){
-			child->setColor({0,0,0});
+    TodoReturn loadFromScore(GJUserScore* p0) {
+		GJScoreCell::loadFromScore(p0);	
+		if (Mod::get()->getSettingValue<bool>("List")){
+			auto child = static_cast<CCLayerColor *>(this->getChildren()->objectAtIndex(0));
+			if(child->getColor() == ccColor3B{161,88,44}){
+				child->setColor({0,0,0});
+			}
+			else if(child->getColor() == ccColor3B{194,114,62}){
+				child->setColor({80,80,80});
+			}
+			child->setOpacity(50.0f);
 		}
-		else if(child->getColor() == ccColor3B{194,114,62}){
-			child->setColor({80,80,80});
-		}
-		child->setOpacity(50.0f);
-	}
-   }
+		return true;
+    }
 };
 
 #include <Geode/modify/LevelListCell.hpp>
 class $modify(LevelListCell) {
-   TodoReturn loadFromList(GJLevelList* p0) {
-    LevelListCell::loadFromList(p0);	
-	if (Mod::get()->getSettingValue<bool>("List")){
-        auto child = static_cast<CCLayerColor *>(this->getChildren()->objectAtIndex(0));
-		if(child->getColor() == ccColor3B{161,88,44}){
-			child->setColor({0,0,0});
+   	TodoReturn loadFromList(GJLevelList* p0) {
+		LevelListCell::loadFromList(p0);	
+		if (Mod::get()->getSettingValue<bool>("List")){
+			auto child = static_cast<CCLayerColor *>(this->getChildren()->objectAtIndex(0));
+			if(child->getColor() == ccColor3B{161,88,44}){
+				child->setColor({0,0,0});
+			}
+			else if(child->getColor() == ccColor3B{194,114,62}){
+				child->setColor({80,80,80});
+			}
+			child->setOpacity(50.0f);
 		}
-		else if(child->getColor() == ccColor3B{194,114,62}){
-			child->setColor({80,80,80});
-		}
-		child->setOpacity(50.0f);
-	}
-   }
+		return true;
+    }
 };
 
 #include <Geode/modify/MapPackCell.hpp>
 class $modify(MapPackCell) {
-   TodoReturn loadFromMapPack(GJMapPack* p0) {
-    MapPackCell::loadFromMapPack(p0);	
-	if (Mod::get()->getSettingValue<bool>("List")){
-        auto child = static_cast<CCLayerColor *>(this->getChildren()->objectAtIndex(0));
-		if(child->getColor() == ccColor3B{161,88,44}){
-			child->setColor({0,0,0});
+   	TodoReturn loadFromMapPack(GJMapPack* p0) {
+		MapPackCell::loadFromMapPack(p0);	
+		if (Mod::get()->getSettingValue<bool>("List")){
+			auto child = static_cast<CCLayerColor *>(this->getChildren()->objectAtIndex(0));
+			if(child->getColor() == ccColor3B{161,88,44}){
+				child->setColor({0,0,0});
+			}
+			else if(child->getColor() == ccColor3B{194,114,62}){
+				child->setColor({80,80,80});
+			}
+			child->setOpacity(50.0f);
 		}
-		else if(child->getColor() == ccColor3B{194,114,62}){
-			child->setColor({80,80,80});
-		}
-		child->setOpacity(50.0f);
-	}
-   }
-};
+		return true;
+    }
+};*/
