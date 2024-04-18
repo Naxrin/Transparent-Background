@@ -10,8 +10,10 @@ class $modify(CreatorLayer) {
         if (!CreatorLayer::init()) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
 			auto background = static_cast<CCSprite *>(this->getChildByID("background"));
-			ccColor3B cb = { 255, 255, 255 };
-			background->setColor(cb);
+			if (background){
+				ccColor3B cb = { 255, 255, 255 };
+				background->setColor(cb);
+			}
 		}
 		return true;		
     }
@@ -23,8 +25,10 @@ class $modify(GJGarageLayer) {
         if (!GJGarageLayer::init()) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
 			auto background = static_cast<CCSprite *>(this->getChildByID("background"));
-			ccColor3B cb = { 255, 255, 255 };
-			background->setColor(cb);
+			if (background){
+				ccColor3B cb = { 255, 255, 255 };
+				background->setColor(cb);
+			}
 		}
 		return true;		
     }
@@ -36,8 +40,10 @@ class $modify(EditLevelLayer) {
 		if (!EditLevelLayer::init(level)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
 			auto background = static_cast<CCSprite *>(this->getChildByID("background"));
-			ccColor3B cb = { 255, 255, 255 };
-			background->setColor(cb);
+			if (background){
+				ccColor3B cb = { 255, 255, 255 };
+				background->setColor(cb);
+			}
 		}
 		if (Mod::get()->getSettingValue<bool>("frame")){
 			this->getChildByID("level-name-background")->setVisible(false);
@@ -53,8 +59,10 @@ class $modify(LevelBrowserLayer) {
 		if (!LevelBrowserLayer::init(search)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
 			auto background = static_cast<CCSprite *>(this->getChildByID("background"));
-			ccColor3B cb = { 255, 255, 255 };
-			background->setColor(cb);
+			if (background){
+				ccColor3B cb = { 255, 255, 255 };
+				background->setColor(cb);
+			}
 		}
 		return true;
     }
@@ -72,7 +80,9 @@ class $modify(LevelInfoLayer) {
 				cb = { 100, 100, 100 };
 			else
 				cb = { 255, 255, 255 };
-			background->setColor(cb);
+			if (background){
+				background->setColor(cb);
+			}
 		}
 		return true;
     }
@@ -108,8 +118,10 @@ class $modify(LevelSearchLayer) {
 		if (!LevelSearchLayer::init(p)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
 			auto background = static_cast<CCSprite *>(this->getChildByID("background"));
-			ccColor3B cb = { 255, 255, 255 };
-			background->setColor(cb);
+			if (background){
+				ccColor3B cb = { 255, 255, 255 };
+				background->setColor(cb);
+			}
 		}
 		if (Mod::get()->getSettingValue<bool>("frame")){
 			this->getChildByID("level-search-bg")->setVisible(false);
@@ -128,8 +140,10 @@ class $modify(LeaderboardsLayer) {
 		if (!LeaderboardsLayer::init(state)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
 			auto background = static_cast<CCSprite *>(this->getChildByID("background"));
-			ccColor3B cb = { 255, 255, 255 };
-			background->setColor(cb);
+			if (background){
+				ccColor3B cb = { 255, 255, 255 };
+				background->setColor(cb);
+			}
 		}
 		return true;		
     }
@@ -141,8 +155,10 @@ class $modify(LevelListLayer) {
 		if (!LevelListLayer::init(list)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
 			auto background = static_cast<CCSprite *>(this->getChildren()->objectAtIndex(0));
-			ccColor3B cb = { 255, 255, 255 };
-			background->setColor(cb);
+			if (background){
+				ccColor3B cb = { 255, 255, 255 };
+				background->setColor(cb);
+			}
 		}
 		return true;		
     }
@@ -159,7 +175,9 @@ class $modify(GauntletSelectLayer) {
 				cb = { 100, 100, 100 };
 			else
 				cb = { 255, 255, 255 };
-			background->setColor(cb);
+			if (background){
+				background->setColor(cb);
+			}
 		}
 		return true;
     }
