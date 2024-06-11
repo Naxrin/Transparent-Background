@@ -1,11 +1,14 @@
 {
-	"geode": "2.0.0-beta.24",
-	"gd": {
-		"win":"2.204",
-		"android": "2.205",
-		"mac":"2.200"
-	},
-	"version": "v1.3.0",
+	"geode": "3.0.0-alpha.2",
+	"platforms": [
+		"win",
+		"android32",
+		"android64",
+		"mac-arm",
+		"mac-win",
+		"ios"
+	],
+	"version": "v2.3.0",
 	"id": "naxrin.transparent",
 	"name": "Transparent BG",
 	"developer": "Naxrin & Lwhe",
