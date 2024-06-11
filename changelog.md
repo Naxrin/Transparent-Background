@@ -1,5 +1,6 @@
 # 2.3.0-alpha.1
 An update for Geode 3.0.0-alpha.2 and GD2.206
+For Geode is still under construction, this update doesn't support Mac yet, and will not apply to LevelListLayer on Windows platform.
 # 1.3.0
 You can customize loading circle colors to fix your background theme
 Switch to dark theme for gauntlet/daily/weekly levels
