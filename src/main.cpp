@@ -1,4 +1,3 @@
-/*Include the Geode headers.*/
 #include <Geode/Geode.hpp>
 #include <Geode/loader/SettingEvent.hpp>
 
@@ -148,7 +147,7 @@ class $modify(LeaderboardsLayer) {
 		return true;		
     }
 };
-
+#ifdef GEODE_IS_ANDROID
 #include <Geode/modify/LevelListLayer.hpp>
 class $modify(LevelListLayer) {
     bool init(GJLevelList* list) {
@@ -163,6 +162,7 @@ class $modify(LevelListLayer) {
 		return true;		
     }
 };
+#endif
 
 #include <Geode/modify/GauntletSelectLayer.hpp>
 class $modify(GauntletSelectLayer) {
