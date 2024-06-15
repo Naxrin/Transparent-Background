@@ -23,3 +23,4 @@ add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
 # Set up dependencies, resources, link Geode
 setup_geode_mod(${PROJECT_NAME})
+setup_geode_mod(EXTERNALS geode.node-ids:^1.12.0)
