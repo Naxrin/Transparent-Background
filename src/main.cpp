@@ -87,30 +87,30 @@ class $modify(LevelInfoLayer) {
 #ifndef GEODE_IS_MACOS
     void onPlay(cocos2d::CCObject* sender) {
         LevelInfoLayer::onPlay(sender);
-		bool color = Mod::get()->getSettingValue<bool>("Circles");
-		if (color&&Mod::get()->getSettingValue<bool>("BG")){
-			auto PlayMenu = this->getChildByID("play-menu");
-			auto btn = PlayMenu->getChildByID("play-button");
-			auto sprt = static_cast<CCNode *>(btn->getChildren()->objectAtIndex(0));
+	bool color = Mod::get()->getSettingValue<bool>("Circles");
+	if (color&&Mod::get()->getSettingValue<bool>("BG")){
+		auto PlayMenu = this->getChildByID("play-menu");
+		auto btn = PlayMenu->getChildByID("play-button");
+		auto sprt = static_cast<CCNode *>(btn->getChildren()->objectAtIndex(0));
+		
+		if (sprt->getChildrenCount()){
+			auto sp0 = static_cast<CCSprite *>(sprt->getChildren()->objectAtIndex(0));
+			auto sp1 = static_cast<CCSprite *>(sprt->getChildren()->objectAtIndex(1));
+			auto sp2 = static_cast<CCProgressTimer *>(sprt->getChildren()->objectAtIndex(2));
+			auto sp3 = static_cast<CCSprite *>(sprt->getChildren()->objectAtIndex(3));
 			
-			if (sprt->getChildrenCount()){
-				auto sp0 = static_cast<CCSprite *>(sprt->getChildren()->objectAtIndex(0));
-				auto sp1 = static_cast<CCSprite *>(sprt->getChildren()->objectAtIndex(1));
-				auto sp2 = static_cast<CCProgressTimer *>(sprt->getChildren()->objectAtIndex(2));
-				auto sp3 = static_cast<CCSprite *>(sprt->getChildren()->objectAtIndex(3));
-				
-				ccColor3B black = Mod::get()->getSettingValue<ccColor3B>("plate");
-				ccColor3B white = Mod::get()->getSettingValue<ccColor3B>("circle");
+			ccColor3B black = Mod::get()->getSettingValue<ccColor3B>("plate");
+			ccColor3B white = Mod::get()->getSettingValue<ccColor3B>("circle");
 
-				sp0->setColor(black);
-				sp1->setColor(black);
-				sp2->setColor(black);
-				sp3->setColor(white);
-			}
+			sp0->setColor(black);
+			sp1->setColor(black);
+			sp2->setColor(black);
+			sp3->setColor(white);
 		}
+	}
     }
+#endif	
 };
-#endif
 
 #include <Geode/modify/LevelSearchLayer.hpp>
 class $modify(LevelSearchLayer) {
