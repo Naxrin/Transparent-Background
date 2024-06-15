@@ -1,5 +1,4 @@
 #include <Geode/Geode.hpp>
-#include <Geode/loader/SettingEvent.hpp>
 
 using namespace geode::prelude;
 
