@@ -146,7 +146,7 @@ class $modify(LeaderboardsLayer) {
 		return true;		
     }
 };
-
+#ifndef GEODE_IS_MACOS
 #include <Geode/modify/LevelListLayer.hpp>
 class $modify(LevelListLayer) {
     bool init(GJLevelList* list) {
@@ -161,6 +161,7 @@ class $modify(LevelListLayer) {
 		return true;		
     }
 };
+#endif
 
 #include <Geode/modify/GauntletSelectLayer.hpp>
 class $modify(GauntletSelectLayer) {
