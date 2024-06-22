@@ -84,7 +84,6 @@ class $modify(LevelInfoLayer) {
 		}
 		return true;
     }
-#ifndef GEODE_IS_MACOS
     void onPlay(cocos2d::CCObject* sender) {
         LevelInfoLayer::onPlay(sender);
 	bool color = Mod::get()->getSettingValue<bool>("Circles");
@@ -109,7 +108,6 @@ class $modify(LevelInfoLayer) {
 		}
 	}
     }
-#endif	
 };
 
 #include <Geode/modify/LevelSearchLayer.hpp>
@@ -149,7 +147,6 @@ class $modify(LeaderboardsLayer) {
     }
 };
 
-#ifndef GEODE_IS_MACOS
 #include <Geode/modify/LevelListLayer.hpp>
 class $modify(LevelListLayer) {
     bool init(GJLevelList* list) {
@@ -164,7 +161,6 @@ class $modify(LevelListLayer) {
 		return true;		
     }
 };
-#endif
 
 #include <Geode/modify/GauntletSelectLayer.hpp>
 class $modify(GauntletSelectLayer) {
