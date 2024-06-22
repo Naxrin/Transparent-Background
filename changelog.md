@@ -1,4 +1,5 @@
-# 2.3.0-beta.2
+# 2.3.0
+Bump version to 3.0.0  
 Loading Circles color now supports Mac
 # 2.3.0-beta.1
 Update for Geode 3.0.0-beta.1  
