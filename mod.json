@@ -8,7 +8,7 @@
 	"version": "v2.3.0",
 	"id": "naxrin.transparent",
 	"name": "Transparent BG",
-	"developer": "Naxrin & Lwhe",
+	"developer": "Naxrin",
 	"description": "\"This mod removes the blue blending of background image so players can enjoy their picked background images better.\"",
 	"repository":"https://github.com/Naxrin/Transparent-BG-Geode",
 	"tags": ["interface"],
