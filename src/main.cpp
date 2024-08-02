@@ -181,6 +181,19 @@ class $modify(GauntletSelectLayer) {
 		return true;
     }
 };
+
+#include "../../Hooks/Hooker.hpp" 
+class PackSelectLayer : public Betterhook::HookBetter { 
+    void init(CCNode* _This) override {
+         if (auto bg = _This->getChildByID("background")) 
+            bg->setColor({255, 255, 255});
+    }
+
+    const char* PutLayer() const override { return "PackSelectLayer"; }
+};
+
+REGISTER_HookBetter(PackSelectLayer);
+
 /*
 // Transparent Lists
 #include <Geode/modify/GJListLayer.hpp>
