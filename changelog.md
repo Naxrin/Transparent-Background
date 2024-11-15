@@ -1,3 +1,5 @@
+# 3.3.0-alpha.1
+Bump version to 4.0.0-alpha.1
 # 2.3.0
 Bump version to 3.0.0  
 Loading Circles color now supports Mac
