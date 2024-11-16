@@ -1,11 +1,11 @@
 {
-	"geode": "4.0.0-alpha.1",
+	"geode": "4.0.0-beta.1",
 	"gd": {
 		"win": "*",
 		"android": "*",
 		"mac": "*"
 	},
-	"version": "v3.3.0-alpha.1",
+	"version": "v3.3.0",
 	"id": "naxrin.transparent",
 	"name": "Transparent Background",
 	"developer": "Naxrin",
@@ -15,7 +15,7 @@
 	"dependencies":[
 		{
 			"id": "geode.node-ids",
-			"version": "v1.17.0-alpha.1",
+			"version": "v1.17.0",
 			"importance":"required"
 		}
 	],
