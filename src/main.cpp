@@ -90,7 +90,7 @@ class $modify(LevelInfoLayer) {
 			return;
 		auto btn = this->getChildByID("play-menu")->getChildByID("play-button");
 		auto sprt = btn->getChildren()->objectAtIndex(0));
-		if (!sqrt)
+		if (!sprt)
 			return;
 		ccColor3B black = Mod::get()->getSettingValue<ccColor3B>("plate");
 		ccColor3B white = Mod::get()->getSettingValue<ccColor3B>("circle");
