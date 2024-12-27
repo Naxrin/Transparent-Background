@@ -86,27 +86,23 @@ class $modify(LevelInfoLayer) {
     }
     void onPlay(cocos2d::CCObject* sender) {
         LevelInfoLayer::onPlay(sender);
-	bool color = Mod::get()->getSettingValue<bool>("Circles");
-	if (color&&Mod::get()->getSettingValue<bool>("BG")){
-		auto PlayMenu = this->getChildByID("play-menu");
-		auto btn = PlayMenu->getChildByID("play-button");
-		auto sprt = static_cast<CCNode *>(btn->getChildren()->objectAtIndex(0));
-		
-		if (sprt->getChildrenCount()){
-			auto sp0 = static_cast<CCSprite *>(sprt->getChildren()->objectAtIndex(0));
-			auto sp1 = static_cast<CCSprite *>(sprt->getChildren()->objectAtIndex(1));
-			auto sp2 = static_cast<CCProgressTimer *>(sprt->getChildren()->objectAtIndex(2));
-			auto sp3 = static_cast<CCSprite *>(sprt->getChildren()->objectAtIndex(3));
-			
-			ccColor3B black = Mod::get()->getSettingValue<ccColor3B>("plate");
-			ccColor3B white = Mod::get()->getSettingValue<ccColor3B>("circle");
+		if (!Mod::get()->getSettingValue<bool>("BG"))
+			return;
+		auto btn = this->getChildByID("play-menu")->getChildByID("play-button");
+		auto sprt = btn->getChildren()->objectAtIndex(0));
+		if (!sqrt)
+			return;
+		ccColor3B black = Mod::get()->getSettingValue<ccColor3B>("plate");
+		ccColor3B white = Mod::get()->getSettingValue<ccColor3B>("circle");
 
+		if (auto sp0 = static_cast<CCSprite*>(sprt->getChildren()->objectAtIndex(0)))
 			sp0->setColor(black);
+		if (auto sp1 = static_cast<CCSprite*>(sprt->getChildren()->objectAtIndex(1)))
 			sp1->setColor(black);
+		if (auto sp2 = static_cast<CCProgressTimer*>(sprt->getChildren()->objectAtIndex(2)))
 			sp2->setColor(black);
+		if (auto sp3 = static_cast<CCSprite*>(sprt->getChildren()->objectAtIndex(3)))
 			sp3->setColor(white);
-		}
-	}
     }
 };
 
@@ -114,14 +110,14 @@ class $modify(LevelInfoLayer) {
 class $modify(LevelSearchLayer) {
     bool init(int p) {
 		if (!LevelSearchLayer::init(p)) return false;
-		if (Mod::get()->getSettingValue<bool>("BG")){
+		if (Mod::get()->getSettingValue<bool>("BG")) {
 			auto background = static_cast<CCSprite *>(this->getChildByID("background"));
 			if (background){
 				ccColor3B cb = { 255, 255, 255 };
 				background->setColor(cb);
 			}
 		}
-		if (Mod::get()->getSettingValue<bool>("frame")){
+		if (Mod::get()->getSettingValue<bool>("frame")) {
 			this->getChildByID("level-search-bg")->setVisible(false);
 			this->getChildByID("level-search-bar-bg")->setVisible(false);
 			this->getChildByID("quick-search-bg")->setVisible(false);
@@ -136,7 +132,7 @@ class $modify(LevelSearchLayer) {
 class $modify(LeaderboardsLayer) {
     bool init(LeaderboardState state) {
 		if (!LeaderboardsLayer::init(state)) return false;
-		if (Mod::get()->getSettingValue<bool>("BG")){
+		if (Mod::get()->getSettingValue<bool>("BG")) {
 			auto background = static_cast<CCSprite *>(this->getChildByID("background"));
 			if (background){
 				ccColor3B cb = { 255, 255, 255 };
@@ -146,7 +142,7 @@ class $modify(LeaderboardsLayer) {
 		return true;		
     }
 };
-#ifndef GEODE_IS_MACOS
+
 #include <Geode/modify/LevelListLayer.hpp>
 class $modify(LevelListLayer) {
     bool init(GJLevelList* list) {
@@ -161,7 +157,6 @@ class $modify(LevelListLayer) {
 		return true;		
     }
 };
-#endif
 
 #include <Geode/modify/GauntletSelectLayer.hpp>
 class $modify(GauntletSelectLayer) {

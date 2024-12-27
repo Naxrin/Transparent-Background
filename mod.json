@@ -5,11 +5,11 @@
 		"android": "2.2074",
 		"mac": "2.2074"
 	},
-	"version": "v3.3.1",
+	"version": "v3.3.2",
 	"id": "naxrin.transparent",
 	"name": "Transparent Background",
 	"developer": "Naxrin",
-	"description": "\"This mod removes the blue blending of background image so players can enjoy their picked background images better.\"",
+	"description": "\"Like if you hate the blue blending of background image.\"",
 	"repository":"https://github.com/Naxrin/Transparent-BG-Geode",
 	"tags": ["interface"],
 	"dependencies":[
@@ -26,6 +26,11 @@
             "type": "bool",
             "default": true
       	},
+		"related": {
+				"name": "Related Options",
+				"description": "Some small options.",
+				"type":"title"
+		},
 		"frame": {
 				"name": "Remove Frames",
 				"description": "Set the frames in Edit Level Layer and LevelSearchLayer to invisible transparent\nYou can enable it individually (This option works even when <cb>Transparent BG</c> option is disabled)",
@@ -33,16 +38,15 @@
 				"default": true
 		},
 		"dark": {
-				"name": "Dark Gauntlets",
+				"name": "Dark Timely/Gauntlets",
 				"description": "Set the background of Gauntlet levels and Daily/Weekly Levels darker, to make them look different from general levels from search engine",
 				"type": "bool",
 				"default": true
-		},	
-		"Circles": {
-				"name": "Custom Loading Circle",
-				"description": "Recolor the loading circle thing to fit with your background.",
-				"type": "bool",
-				"default": false
+		},
+		"loading": {
+			"name": "Loading Circle",
+			"description": "Modify the loading circle and its round base when the game loads the level in Level Info Menu.",
+			"type":"title"
 		},
 		"plate": {
 				"name": "Loading Plate Color",
