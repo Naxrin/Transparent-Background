@@ -86,22 +86,23 @@ class $modify(LevelInfoLayer) {
     }
     void onPlay(cocos2d::CCObject* sender) {
         LevelInfoLayer::onPlay(sender);
-		if (!Mod::get()->getSettingValue<bool>("BG"))
-			return;
+		if (!Mod::get()->getSettingValue<bool>("BG")) return;
 		auto btn = this->getChildByID("play-menu")->getChildByID("play-button");
-		auto sprt = btn->getChildren()->objectAtIndex(0));
-		if (!sprt)
-			return;
+		auto sprt = btn->getChildByType<CCNode>(0);
+		
 		ccColor3B black = Mod::get()->getSettingValue<ccColor3B>("plate");
 		ccColor3B white = Mod::get()->getSettingValue<ccColor3B>("circle");
-
-		if (auto sp0 = static_cast<CCSprite*>(sprt->getChildren()->objectAtIndex(0)))
+		if (!sprt) return;
+		if (auto sp0 = sprt->getChildByType<CCSprite>(0))
 			sp0->setColor(black);
-		if (auto sp1 = static_cast<CCSprite*>(sprt->getChildren()->objectAtIndex(1)))
+	    	if (!sprt) return;
+		if (auto sp1 = sprt->getChildByType<CCSprite>(1))
 			sp1->setColor(black);
-		if (auto sp2 = static_cast<CCProgressTimer*>(sprt->getChildren()->objectAtIndex(2)))
+	    	if (!sprt) return;
+		if (auto sp2 = sprt->getChildByType<CCSprite>(2))
 			sp2->setColor(black);
-		if (auto sp3 = static_cast<CCSprite*>(sprt->getChildren()->objectAtIndex(3)))
+	    	if (!sprt) return;
+		if (auto sp3 = sprt->getChildByType<CCSprite>(3))
 			sp3->setColor(white);
     }
 };
