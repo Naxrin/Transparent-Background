@@ -99,8 +99,8 @@ class $modify(LevelInfoLayer) {
 		if (auto sp1 = sprt->getChildByType<CCSprite>(1))
 			sp1->setColor(black);
 	    	if (!sprt) return;
-		if (auto sp2 = sprt->getChildByType<CCProgressTimer>(1))
-			sp2->setColor(black);
+		if (auto children = sprt->getChildren())
+			static_cast<CCProgressTimer*>(children->objectAtIndex(2))->setColor(black);
 	    	if (!sprt) return;
 		if (auto sp3 = sprt->getChildByType<CCSprite>(2))
 			sp3->setColor(white);
