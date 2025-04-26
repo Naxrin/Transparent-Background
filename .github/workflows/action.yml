@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - "none"
+      - "**"
 
 jobs:
   build:
@@ -15,6 +15,13 @@ jobs:
         - name: Windows
           os: windows-latest
 
+        - name: macOS
+          os: macos-latest
+
+        - name: iOS
+          os: macos-latest
+          target: iOS
+
         - name: Android32
           os: ubuntu-latest
           target: Android32
@@ -23,21 +30,24 @@ jobs:
           os: ubuntu-latest
           target: Android64
 
-        - name: macOS
-          os: macos-latest
-
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Build the mod
+      - name: Build the mod (Release)
         uses: geode-sdk/build-geode-mod@main
         with:
+          # build-config: RelWithDebInfo
+          # export-pdb: true
+          # bindings: RayDeeUx/bindings
+          # bindings-ref: "foobar"
           combine: true
           target: ${{ matrix.config.target }}
-      
+          cli: nightly # remove once iOS finishes
+          sdk: nightly # remove once iOS finishes
+
   package:
     name: Package builds
     runs-on: ubuntu-latest
@@ -46,8 +56,10 @@ jobs:
     steps:
       - uses: geode-sdk/build-geode-mod/combine@main
         id: build
+        with:
+          cli: nightly # remove once iOS finishes
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: Build Output
           path: ${{ steps.build.outputs.build-output }}
