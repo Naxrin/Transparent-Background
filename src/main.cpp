@@ -8,7 +8,7 @@ class $modify(MenuLayer) {
         if (!MenuLayer::init()) return false;
 		if (Mod::get()->getSettingValue<bool>("BG") && Mod::get()->getSettingValue<bool>("menu-layer")) {
 			auto bg = geode::createLayerBG();
-			bg->setColor({ 255, 255, 255 });
+			bg->setColor(ccc3(255, 255, 255));
 			bg->setZOrder(-19);
 			this->addChild(bg);
 			// DELETE BASEGAMELAYER
@@ -32,7 +32,7 @@ class $modify(LoadingLayer) {
 			if (auto bg0 = this->getChildByID("bg-texture"))
 				bg0->setVisible(false);
 			auto bg = geode::createLayerBG();
-			bg->setColor({ 255, 255, 255 });
+			bg->setColor(ccc3(255, 255, 255));
 			bg->setZOrder(-19);
 			this->addChild(bg);
 		}
@@ -46,7 +46,7 @@ class $modify(CreatorLayer) {
         if (!CreatorLayer::init()) return false;
 		if (Mod::get()->getSettingValue<bool>("BG"))
 			if (auto bg = static_cast<CCSprite*>(getChildByID("background")))
-				bg->setColor({ 255, 255, 255 });
+				bg->setColor(ccc3(255, 255, 255));
 		return true;
     }
 };
@@ -57,7 +57,7 @@ class $modify(GJGarageLayer) {
         if (!GJGarageLayer::init()) return false;
 		if (Mod::get()->getSettingValue<bool>("BG"))
 			if (auto bg = static_cast<CCSprite*>(getChildByID("background")))
-				bg->setColor({ 255, 255, 255 });
+				bg->setColor(ccc3(255, 255, 255));
 		return true;		
     }
 };
@@ -68,7 +68,7 @@ class $modify(EditLevelLayer) {
 		if (!EditLevelLayer::init(level)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG"))
 			if (auto bg = static_cast<CCSprite*>(getChildByID("background")))
-				bg->setColor({ 255, 255, 255 });
+				bg->setColor(ccc3(255, 255, 255));
 		// frame
 		if (Mod::get()->getSavedValue<bool>("frame")) {
 			getChildByID("level-name-background")->setVisible(false);
@@ -84,7 +84,7 @@ class $modify(LevelBrowserLayer) {
 		if (!LevelBrowserLayer::init(search)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG"))
 			if (auto bg = static_cast<CCSprite*>(getChildByID("background")))
-				bg->setColor({ 255, 255, 255 });
+				bg->setColor(ccc3(255, 255, 255));
 		return true;
     }
 };
@@ -97,7 +97,7 @@ class $modify(LevelInfoLayer) {
 			if (auto bg = static_cast<CCSprite*>(getChildByID("background"))) {
 				bool gauntlet = Mod::get()->getSavedValue<bool>("gauntlet-dark") && (level->m_gauntletLevel || level->m_gauntletLevel2);
 				bool timely = Mod::get()->getSavedValue<bool>("timely-dark") || getChildByID("daily-label");
-				bg->setColor(gauntlet || timely ? ccColor3B(100, 100, 100): ccColor3B(255, 255, 255));
+				bg->setColor(gauntlet || timely ? ccc3(100, 100, 100): ccc3(255, 255, 255));
 			}
 		}
 		return true;
@@ -136,7 +136,7 @@ class $modify(LevelSearchLayer) {
 		if (!LevelSearchLayer::init(p)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
 			if (auto bg = static_cast<CCSprite*>(getChildByID("background")))
-				bg->setColor({ 255, 255, 255 });
+				bg->setColor(ccc3(255, 255, 255));
 		}
 		// to edit
 		if (Mod::get()->getSavedValue<bool>("frame"), true){
@@ -156,7 +156,7 @@ class $modify(LeaderboardsLayer) {
 		if (!LeaderboardsLayer::init(state)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG")){
 			if (auto bg = static_cast<CCSprite*>(getChildByID("background")))
-				bg->setColor({ 255, 255, 255 });
+				bg->setColor(ccc3(255, 255, 255));
 		}
 		return true;		
     }
@@ -168,7 +168,7 @@ class $modify(LevelListLayer) {
 		if (!LevelListLayer::init(list)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG"))
 			static_cast<CCSprite *>(this->getChildren()->objectAtIndex(0))->setColor(
-				Mod::get()->getSavedValue<bool>("gauntlet-dark") ? ccColor3B(100, 100, 100): ccColor3B(255, 255, 255));
+				Mod::get()->getSavedValue<bool>("gauntlet-dark") ? ccc3(100, 100, 100): ccc3(255, 255, 255));
 		return true;		
     }
 };
@@ -179,7 +179,7 @@ class $modify(GauntletSelectLayer) {
 		if (!GauntletSelectLayer::init(p)) return false;
 		if (Mod::get()->getSettingValue<bool>("BG"))
 			static_cast<CCSprite *>(this->getChildren()->objectAtIndex(0))->setColor(
-				Mod::get()->getSavedValue<bool>("gauntlet-dark") ? ccColor3B(100, 100, 100): ccColor3B(255, 255, 255));
+				Mod::get()->getSavedValue<bool>("gauntlet-dark") ? ccc3(100, 100, 100): ccc3(255, 255, 255));
 		return true;
     }
 };
@@ -220,7 +220,7 @@ class CustomCreatorLayer : public Betterhook::HookBetter {
     void init(CCNode* _This) override {
 		if (Mod::get()->getSettingValue<bool>("BG") && Mod::get()->getSettingValue<bool>("better-info")) {
 			auto bg = geode::createLayerBG();
-			bg->setColor({ 255, 255, 255 });
+			bg->setColor(ccc3(255, 255, 255));
 			bg->setZOrder(-2);
 			_This->addChild(bg);
 			if (auto oribg = _This->getChildByID("cvolton.betterinfo/background"))
@@ -246,7 +246,7 @@ class GlobedMenuLayer : public Betterhook::HookBetter {
     void init(CCNode* _This) override {
 		if (Mod::get()->getSettingValue<bool>("BG") && Mod::get()->getSettingValue<bool>("globed")) {
 			auto bg = geode::createLayerBG();
-			bg->setColor({ 255, 255, 255 });
+			bg->setColor(ccc3(255, 255, 255));
 			bg->setZOrder(-2);
 			_This->addChild(bg);
 			if (auto oribg = _This->getChildByID("background"))
@@ -262,7 +262,7 @@ class GlobedServersLayer : public Betterhook::HookBetter {
     void init(CCNode* _This) override {
 		if (Mod::get()->getSettingValue<bool>("BG") && Mod::get()->getSettingValue<bool>("globed")) {
 			auto bg = geode::createLayerBG();
-			bg->setColor({ 255, 255, 255 });
+			bg->setColor(ccc3(255, 255, 255));
 			bg->setZOrder(-2);
 			_This->addChild(bg);
 			if (auto oribg = _This->getChildByID("background"))
@@ -321,7 +321,7 @@ class GPFeedbackLayer : public Betterhook::HookBetter {
     void init(CCNode* _This) override {
 		if (Mod::get()->getSettingValue<bool>("BG") && Mod::get()->getSettingValue<bool>("garage-plus")) {
 			auto bg = geode::createLayerBG();
-			bg->setColor({ 255, 255, 255 });
+			bg->setColor(ccc3(255, 255, 255));
 			bg->setZOrder(-2);
 			_This->addChild(bg);
 			if (auto oribg = _This->getChildByID("menu")->getChildByID("background"))
@@ -337,7 +337,7 @@ class GPKofiLayer : public Betterhook::HookBetter {
     void init(CCNode* _This) override {
 		if (Mod::get()->getSettingValue<bool>("BG") && Mod::get()->getSettingValue<bool>("garage-plus")) {
 			auto bg = geode::createLayerBG();
-			bg->setColor({ 255, 255, 255 });
+			bg->setColor(ccc3(255, 255, 255));
 			bg->setZOrder(-2);
 			_This->addChild(bg);
 			if (auto oribg = _This->getChildByID("background"))
@@ -366,7 +366,7 @@ class TextureWorkshopLayer : public Betterhook::HookBetter {
     void init(CCNode* _This) override {
 		if (Mod::get()->getSettingValue<bool>("BG") && Mod::get()->getSettingValue<bool>("texture-workshop")) {
 			auto bg = geode::createLayerBG();
-			bg->setColor({ 255, 255, 255 });
+			bg->setColor(ccc3(255, 255, 255));
 			bg->setZOrder(-2);
 			_This->addChild(bg);
 			if (auto oribg = _This->getChildByID("background"))
