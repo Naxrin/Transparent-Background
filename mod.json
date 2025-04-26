@@ -1,21 +1,23 @@
 {
-	"geode": "4.1.0",
+	"geode": "4.3.1",
 	"gd": {
 		"win": "2.2074",
 		"android": "2.2074",
-		"mac": "2.2074"
+		"mac": "2.2074",
+		"ios": "2.2074"
 	},
-	"version": "v3.3.2",
+	"version": "v3.4.0",
 	"id": "naxrin.transparent",
 	"name": "Transparent Background",
 	"developer": "Naxrin",
-	"description": "\"Like if you hate the blue blending of background image.\"",
-	"repository":"https://github.com/Naxrin/Transparent-BG-Geode",
+	"description": "To be not only Transparent BG.",
+	"repository":"https://github.com/Naxrin/Transparent-Background",
 	"tags": ["interface"],
+	"early-load":true,
 	"dependencies":[
 		{
 			"id": "geode.node-ids",
-			"version": "v1.17.0",
+			"version": "v1.20.1",
 			"importance":"required"
 		}
 	],
@@ -26,22 +28,69 @@
             "type": "bool",
             "default": true
       	},
-		"related": {
-				"name": "Related Options",
-				"description": "Some small options.",
-				"type":"title"
+		"extra": {
+			"name": "Extra Layers",
+			"description": "Some menu pages doesn't have a background, this mod allows you toggle them optional.",
+			"type":"title"
+		},
+		"menu-layer": {
+			"name": "Main Menu",
+			"description": "MenuLayer",
+			"type": "bool",
+			"default": false
+		},
+		"loading-layer": {
+			"name": "Loading Page",
+			"description": "LoadingLayer",
+			"type": "bool",
+			"default": false
+		},
+		"gauntlet-map": {
+			"name": "Gauntlet Map",
+			"description": "GauntletLayer",
+			"type": "bool",
+			"default": false
+		},
+		"better-info": {
+			"name": "Better Info",
+			"description": "cvolton.betterinfo -> CustomCreatorLayer",
+			"type": "bool",
+			"default": false
+		},
+		"globed": {
+			"name": "Globed",
+			"description": "dankmeme.globed2",
+			"type": "bool",
+			"default": false
+		},
+		"garage-plus": {
+			"name": "Garage Plus",
+			"description": "omgrod.garage_plus",
+			"type": "bool",
+			"default": false
+		},
+		"texture-workshop": {
+			"name": "Texture WorkShop",
+			"description": "uproxide.textures",
+			"type": "bool",
+			"default": false
+		},
+		"detail": {
+			"name": "Detail Options",
+			"description": "Some small options of details.",
+			"type":"title"
 		},
 		"frame": {
-				"name": "Remove Frames",
-				"description": "Set the frames in Edit Level Layer and LevelSearchLayer to invisible transparent\nYou can enable it individually (This option works even when <cb>Transparent BG</c> option is disabled)",
-				"type": "bool",
-				"default": true
+			"name": "Remove Frames",
+			"description": "Set the frames in Edit Level Layer and LevelSearchLayer to invisible transparent\nYou can enable it individually (This option works even when <cb>Transparent BG</c> option is disabled)",
+			"type": "bool",
+			"default": true
 		},
 		"dark": {
-				"name": "Dark Timely/Gauntlets",
-				"description": "Set the background of Gauntlet levels and Daily/Weekly Levels darker, to make them look different from general levels from search engine",
-				"type": "bool",
-				"default": true
+			"name": "Dark Timely/Event/Gauntlets",
+			"description": "Set the background of Gauntlet levels and Daily/Weekly/Event Levels darker, to make them look different from general levels from search engine",
+			"type": "bool",
+			"default": true
 		},
 		"loading": {
 			"name": "Loading Circle",
@@ -49,16 +98,16 @@
 			"type":"title"
 		},
 		"plate": {
-				"name": "Loading Plate Color",
-				"description": "Customize the colorof the loading module's round plate.\nSuggest a color similar to your background",
-				"type": "color",
-				"default": "000000"
+			"name": "Loading Plate Color",
+			"description": "Customize the color of the loading module's round plate.\nSuggest a color similar to your background",
+			"type": "color",
+			"default": "000000"
 		},
 		"circle": {
-				"name": "Loading Circle Color",
-				"description": "Customize the color of the color of the loading module's round plate.\nSuggest a color that differs as far as possible to the plate color",
-				"type": "color",
-				"default": "FFFFFF"
+			"name": "Loading Circle Color",
+			"description": "Customize the color of the color of the loading module's round plate.\nSuggest a color that differs as far as possible to your plate color",
+			"type": "color",
+			"default": "FFFFFF"
 		}
 	}
 }
