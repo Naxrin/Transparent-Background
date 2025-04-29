@@ -1,4 +1,4 @@
-# 3.4.1
+# 3.5.0
 **Alpha's Geode Utils** is now a required dependency, this fixes these following two issues so it's worthy to download another mod:
 - Fix PackSelectLayer background (Texture Loader) getting back to blue after Apply Packs reload
 - Fix issues relating macOS and iOS
