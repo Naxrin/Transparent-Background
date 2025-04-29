@@ -6,31 +6,36 @@
 		"mac": "2.2074",
 		"ios": "2.2074"
 	},
-	"version": "v3.4.0",
+	"version": "v3.5.0",
 	"id": "naxrin.transparent",
 	"name": "Transparent Background",
 	"developer": "Naxrin",
 	"description": "To be not only Transparent BG.",
 	"repository":"https://github.com/Naxrin/Transparent-Background",
 	"tags": ["interface"],
-	"early-load":true,
-	"dependencies":[
+	"early-load": true,
+	"dependencies": [
 		{
 			"id": "geode.node-ids",
 			"version": "v1.20.1",
-			"importance":"required"
+			"importance":"required"				
+		},
+		{
+        	"id": "alphalaneous.alphas_geode_utils",
+            "version": "v1.1.1",	
+            "importance": "required"
 		}
 	],
 	"settings": {
 		"BG": {
-            "name": "Transparent BG",
+            "name": "Switch",
             "description": "Removes the blue blendings of Background.",
             "type": "bool",
             "default": true
       	},
 		"extra": {
 			"name": "Extra Layers",
-			"description": "Some menu pages doesn't have a background, this mod allows you toggle them optional.",
+			"description": "Some menu pages doesn't have a background at all, this mod allows you toggle them optional.",
 			"type":"title"
 		},
 		"menu-layer": {
@@ -42,6 +47,12 @@
 		"loading-layer": {
 			"name": "Loading Page",
 			"description": "LoadingLayer",
+			"type": "bool",
+			"default": false
+		},
+		"level-select-layer": {
+			"name": "Official Levels Browser",
+			"description": "LevelSelectLayer",
 			"type": "bool",
 			"default": false
 		},
@@ -72,6 +83,12 @@
 		"texture-workshop": {
 			"name": "Texture WorkShop",
 			"description": "uproxide.textures",
+			"type": "bool",
+			"default": false
+		},
+		"gdps-hub": {
+			"name": "GDPS Hub",
+			"description": "lblazen.gdps_hub",
 			"type": "bool",
 			"default": false
 		},

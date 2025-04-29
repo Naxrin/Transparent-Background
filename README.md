@@ -1,21 +1,11 @@
 # Transparent Background
-
-This mod removes stupid blue blending of background image and shitty yellow list background in several menu pages and let us able to enjoy the raw anime porn background we pick.
+This mod removes stupid blue blending of background image and shitty yellow list background in several menu pages and let us able to enjoy the raw anime background we pick.
+In addition, you can customize loading circle colors to fix your background theme.
+Also you can switch to dark theme for gauntlet/daily/weekly levels.
 
 Will consider customizing the background color by your own or something else.
-Welcome to report bugs anyway!
 
-Transparent BG is by Naxrin, and Transparent List is by Lwhe.
-Inspired by Alphalaneous' version, we made a fix.
-But we recommend alphalaneous' Transparent List more.
-
-Neither of us is pro coder, we do it just bcoz both fascinating thing is yet not published in Mega Hack v8 up to now.
-Neither of us have a mac so this mod is not yet confirmed to work well in mac. Contact Naxrin via GD message if the mod breaks down on your mac.
-
-Special Thanks:
+So this is my first mod and the initial motivation I learn geode modding,~~ idk why Absolute aren't gonna port Transparent BG to MH8 until Feb 2024 anyway.~~
+### Special Thanks:
 WEGFan (Github support)
 Also dev-helpers in Geode Discord Server
-
-Contact Naxrin outside Github:
-Discord: Naxrin#6957
-Twitter/X: @Naxrin19
