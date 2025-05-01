@@ -6,7 +6,7 @@
 		"mac": "2.2074",
 		"ios": "2.2074"
 	},
-	"version": "v3.5.1",
+	"version": "v3.5.2",
 	"id": "naxrin.transparent",
 	"name": "Transparent Background",
 	"developer": "Naxrin",
@@ -18,7 +18,7 @@
 		{
 			"id": "geode.node-ids",
 			"version": "v1.20.1",
-			"importance":"required"				
+			"importance":"required"
 		},
 		{
         	"id": "alphalaneous.alphas_geode_utils",

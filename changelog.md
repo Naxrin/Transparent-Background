@@ -1,3 +1,6 @@
+# 3.5.2
+- Fix some legacy issues (hard to explain but they are fixed)
+
 # 3.5.1
 - Fix some unknown issues
 

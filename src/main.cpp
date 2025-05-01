@@ -85,7 +85,7 @@ class $modify(EditLevelLayer) {
     bool init(GJGameLevel* level) {
 		if (!EditLevelLayer::init(level)) return false;
 		// frame
-		if (Mod::get()->getSavedValue<bool>("frame")) {
+		if (Mod::get()->getSettingValue<bool>("frame")) {
 			if (auto n = this->getChildByID("level-name-background"))
 				n->setVisible(false);
 			if (auto n = this->getChildByID("description-background"))
@@ -130,7 +130,7 @@ class $modify(LevelInfoLayer) {
     void onPlay(cocos2d::CCObject* sender) {
         LevelInfoLayer::onPlay(sender);
 		// test will change
-		if (!Mod::get()->getSavedValue<bool>("Circles", true)) return;
+		if (!Mod::get()->getSettingValue<bool>("Circles")) return;
 
 		auto playMenu = getChildByID("play-menu");
 		if (!playMenu) return;
@@ -144,8 +144,8 @@ class $modify(LevelInfoLayer) {
 			auto sp2 = static_cast<CCProgressTimer *>(sprt->getChildren()->objectAtIndex(2));
 			auto sp3 = static_cast<CCSprite *>(sprt->getChildren()->objectAtIndex(3));
 			
-			ccColor3B black = Mod::get()->getSavedValue<ccColor3B>("plate");
-			ccColor3B white = Mod::get()->getSavedValue<ccColor3B>("circle", {255, 255, 255});
+			ccColor3B black = Mod::get()->getSettingValue<ccColor3B>("plate");
+			ccColor3B white = Mod::get()->getSettingValue<ccColor3B>("circle");
 
 			sp0->setColor(black);
 			sp1->setColor(black);
@@ -162,7 +162,7 @@ class $modify(LevelSearchLayer) {
 		if (!LevelSearchLayer::init(p)) return false;
 
 		// to edit
-		if (Mod::get()->getSavedValue<bool>("frame"), true) {
+		if (Mod::get()->getSettingValue<bool>("frame")) {
 			if (auto n = this->getChildByID("level-search-bg"))
 				n->setVisible(false);
 			if (auto n = this->getChildByID("level-search-bar-bg"))
