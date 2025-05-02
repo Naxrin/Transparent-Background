@@ -1,3 +1,7 @@
+# 3.5.3
+- some alter fix (thanks hiimjasmine)
+- add node ids for backgrounds added by this mod
+
 # 3.5.2
 - Fix some legacy issues (hard to explain but they are fixed)
 
