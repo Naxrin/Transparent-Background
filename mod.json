@@ -114,16 +114,24 @@
 			"description": "Modify the loading circle and its round base when the game loads the level in Level Info Menu.",
 			"type":"title"
 		},
+		"Circles": {
+			"name": "Customize Colors",
+			"description": "Enables customization of the loading circle and its round base.",
+			"type": "bool",
+			"default": true
+		},
 		"plate": {
 			"name": "Loading Plate Color",
 			"description": "Customize the color of the loading module's round plate.\nSuggest a color similar to your background",
 			"type": "color",
+			"enable-if": "Circles",
 			"default": "000000"
 		},
 		"circle": {
 			"name": "Loading Circle Color",
 			"description": "Customize the color of the color of the loading module's round plate.\nSuggest a color that differs as far as possible to your plate color",
 			"type": "color",
+			"enable-if": "Circles",
 			"default": "FFFFFF"
 		}
 	}

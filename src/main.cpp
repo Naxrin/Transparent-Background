@@ -10,15 +10,10 @@ class $modify(MenuLayer) {
 			auto bg = geode::createLayerBG();
 			bg->setColor(ccc3(255, 255, 255));
 			bg->setZOrder(-19);
+			bg->setID("background"_spr);
 			this->addChild(bg);
-			// DELETE BASEGAMELAYER
-			for (const auto& child : CCArrayExt<CCNode*>(this->getChildren())) {
-				auto layer = typeinfo_cast<MenuGameLayer*>(child);
-				if (!layer)
-					continue;
-				layer->removeFromParentAndCleanup(true);
-				break;
-        	}
+			// HIDE BASEGAMELAYER
+			if (this->m_menuGameLayer) this->m_menuGameLayer->setVisible(false);
 		}
 		return true;
     }
@@ -34,6 +29,7 @@ class $modify(LoadingLayer) {
 			auto bg = geode::createLayerBG();
 			bg->setColor(ccc3(255, 255, 255));
 			bg->setZOrder(-19);
+			bg->setID("background"_spr);
 			this->addChild(bg);
 		}
 		return true;
@@ -50,6 +46,7 @@ class $modify(LevelSelectLayer) {
 			auto bg = geode::createLayerBG();
 			bg->setColor(ccc3(255, 255, 255));
 			bg->setZOrder(-19);
+			bg->setID("background"_spr);
 			this->addChild(bg);
 		}
 		return true;
@@ -119,9 +116,8 @@ class $modify(LevelInfoLayer) {
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
 			if (auto bg = typeinfo_cast<CCSprite*>(node)) {
-				bool gauntlet = Mod::get()->getSettingValue<bool>("gauntlet-dark") && (level->m_gauntletLevel || level->m_gauntletLevel2);
-				bool timely = Mod::get()->getSettingValue<bool>("timely-dark") ||  level->m_dailyID.value(); // this->getChildByID("daily-label")
-				bg->setColor(gauntlet || timely ? ccc3(100, 100, 100): ccc3(255, 255, 255));				
+				bool dark = Mod::get()->getSettingValue<bool>("dark") && (level->m_gauntletLevel || level->m_dailyID.value() > 0);
+				bg->setColor(dark ? ccc3(100, 100, 100): ccc3(255, 255, 255));				
 			}
 		
 		return true;
@@ -132,17 +128,10 @@ class $modify(LevelInfoLayer) {
 		// test will change
 		if (!Mod::get()->getSettingValue<bool>("Circles")) return;
 
-		auto playMenu = getChildByID("play-menu");
-		if (!playMenu) return;
-		auto btn = playMenu->getChildByID("play-button");
-		if (!btn) return;
-		auto sprt = static_cast<CCNode *>(btn->getChildren()->objectAtIndex(0));
-		
-		if (sprt->getChildrenCount()){
-			auto sp0 = static_cast<CCSprite *>(sprt->getChildren()->objectAtIndex(0));
-			auto sp1 = static_cast<CCSprite *>(sprt->getChildren()->objectAtIndex(1));
-			auto sp2 = static_cast<CCProgressTimer *>(sprt->getChildren()->objectAtIndex(2));
-			auto sp3 = static_cast<CCSprite *>(sprt->getChildren()->objectAtIndex(3));
+		if (m_playSprite->getChildrenCount() >= 3) {
+			auto sp0 = static_cast<CCSprite *>(m_playSprite->getChildren()->objectAtIndex(0));
+			auto sp1 = static_cast<CCSprite *>(m_playSprite->getChildren()->objectAtIndex(1));
+			auto sp2 = static_cast<CCSprite *>(m_playSprite->getChildren()->objectAtIndex(2));
 			
 			ccColor3B black = Mod::get()->getSettingValue<ccColor3B>("plate");
 			ccColor3B white = Mod::get()->getSettingValue<ccColor3B>("circle");
@@ -150,7 +139,7 @@ class $modify(LevelInfoLayer) {
 			sp0->setColor(black);
 			sp1->setColor(black);
 			sp2->setColor(black);
-			sp3->setColor(white);
+			m_progressTimer->setColor(white);
 			
 		}
     }
@@ -200,8 +189,9 @@ class $modify(LevelListLayer) {
     bool init(GJLevelList* list) {
 		if (!LevelListLayer::init(list)) return false;
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
-		if (auto bg = this->getChildByType<CCSprite>(0))
-			bg->setColor(ccc3(255, 255, 255));
+		if (auto node = this->getChildByID("background"))
+			if (auto bg = typeinfo_cast<CCSprite*>(node))
+				bg->setColor(ccc3(255, 255, 255));
 		return true;
     }
 };
@@ -211,8 +201,9 @@ class $modify(GauntletSelectLayer) {
     bool init(int p) {
 		if (!GauntletSelectLayer::init(p)) return false;
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
-		if (auto bg = this->getChildByType<CCSprite>(0))
-			bg->setColor(ccc3(255, 255, 255));
+		if (auto node = this->getChildByID("background"))
+			if (auto bg = typeinfo_cast<CCSprite*>(node))
+				bg->setColor(ccc3(255, 255, 255));
 		return true;
     }
 };
@@ -221,12 +212,14 @@ class $modify(GauntletSelectLayer) {
 class $modify(GauntletLayer) {
     bool init(GauntletType p) {
 		if (!GauntletLayer::init(p)) return false;
-		if (!Mod::get()->getSettingValue<bool>("BG") || !Mod::get()->getSettingValue<bool>("gauntlet")) return true;
+		if (!Mod::get()->getSettingValue<bool>("BG") || !Mod::get()->getSettingValue<bool>("gauntlet-map")) return true;
 
-		this->getChildByType<CCSprite>(0)->setVisible(false);
+		if (auto bg0 = this->getChildByID("background"))
+			bg0->setVisible(false);
 		auto bg = geode::createLayerBG();
 		bg->setColor({255, 255, 255});
 		bg->setZOrder(-19);
+		bg->setID("background"_spr);
 		this->addChild(bg);
 
 		return true;
