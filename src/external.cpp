@@ -19,6 +19,7 @@ class $nodeModify(CustomCreatorLayer) {
 		auto bg = geode::createLayerBG();
 		bg->setColor(ccc3(255, 255, 255));
 		bg->setZOrder(-2);
+		bg->setID("background"_spr);
 		this->addChild(bg);
 		if (auto oribg = this->getChildByID("cvolton.betterinfo/background"))
 			oribg->setVisible(false);
@@ -31,6 +32,7 @@ class $nodeModify(DailyViewLayer) {
 		auto bg = geode::createLayerBG();
 		bg->setColor(ccc3(255, 255, 255));
 		bg->setZOrder(-2);
+		bg->setID("background"_spr);
 		this->addChild(bg);
 		if (auto oribg = this->getChildByID("cvolton.betterinfo/background"))
 			oribg->setVisible(false);
@@ -43,6 +45,7 @@ class $nodeModify(LevelSearchViewLayer) {
 		auto bg = geode::createLayerBG();
 		bg->setColor(ccc3(255, 255, 255));
 		bg->setZOrder(-2);
+		bg->setID("background"_spr);
 		this->addChild(bg);
 		if (auto oribg = this->getChildByID("cvolton.betterinfo/background"))
 			oribg->setVisible(false);
@@ -55,6 +58,7 @@ class $nodeModify(LeaderboardViewLayer) {
 		auto bg = geode::createLayerBG();
 		bg->setColor(ccc3(255, 255, 255));
 		bg->setZOrder(-2);
+		bg->setID("background"_spr);
 		this->addChild(bg);
 		if (auto oribg = this->getChildByID("cvolton.betterinfo/background"))
 			oribg->setVisible(false);
@@ -67,6 +71,7 @@ class $nodeModify(RewardGroupLayer) {
 		auto bg = geode::createLayerBG();
 		bg->setColor(ccc3(255, 255, 255));
 		bg->setZOrder(-2);
+		bg->setID("background"_spr);
 		this->addChild(bg);
 		if (auto oribg = this->getChildByID("cvolton.betterinfo/background"))
 			oribg->setVisible(false);
@@ -79,6 +84,7 @@ class $nodeModify(RewardViewLayer) {
 		auto bg = geode::createLayerBG();
 		bg->setColor(ccc3(255, 255, 255));
 		bg->setZOrder(-2);
+		bg->setID("background"_spr);
 		this->addChild(bg);
 		if (auto oribg = this->getChildByID("cvolton.betterinfo/background"))
 			oribg->setVisible(false);
@@ -109,6 +115,7 @@ class $nodeModify(GlobedMenuLayer) {
 		auto bg = geode::createLayerBG();
 		bg->setColor(ccc3(255, 255, 255));
 		bg->setZOrder(-2);
+		bg->setID("background"_spr);
 		this->addChild(bg);
 		if (auto oribg = this->getChildByID("background"))
 			oribg->setVisible(false);
@@ -121,6 +128,7 @@ class $nodeModify(GlobedServersLayer) {
 		auto bg = geode::createLayerBG();
 		bg->setColor(ccc3(255, 255, 255));
 		bg->setZOrder(-2);
+		bg->setID("background"_spr);
 		this->addChild(bg);
 		if (auto oribg = this->getChildByID("background"))
 			oribg->setVisible(false);
@@ -150,14 +158,15 @@ class $nodeModify(ServerSwitchLayer) {
 class $nodeModify(GDPSHubLayer) {
 	void modify() {
 		if (!Mod::get()->getSettingValue<bool>("BG") || !Mod::get()->getSettingValue<bool>("gdps-hub")) return;
-        auto bg = geode::createLayerBG();
-        bg->setColor(ccc3(255, 255, 255));
-        bg->setZOrder(-2);
-        this->addChild(bg);
-        if (auto oribg = this->getChildByID("background"))
-            oribg->setVisible(false);
+	        auto bg = geode::createLayerBG();
+	        bg->setColor(ccc3(255, 255, 255));
+	        bg->setZOrder(-2);
+		bg->setID("background"_spr);
+	        this->addChild(bg);
+	        if (auto oribg = this->getChildByID("background"))
+	        	oribg->setVisible(false);
 		if (auto oribg = this->getChildByID("swelvy-node"))
-            oribg->setVisible(false);
+            		oribg->setVisible(false);
 	}
 };
 
@@ -211,24 +220,26 @@ class $nodeModify(RouletteSafeLayer) {
 class $nodeModify(GPFeedbackLayer) {
 	void modify() {
 		if (!Mod::get()->getSettingValue<bool>("BG") || !Mod::get()->getSettingValue<bool>("garage-plus")) return;
-        auto bg = geode::createLayerBG();
-        bg->setColor(ccc3(255, 255, 255));
-        bg->setZOrder(-2);
-        this->addChild(bg);
-        if (auto oribg = this->getChildByID("menu")->getChildByID("background"))
-            oribg->setVisible(false);
+	        auto bg = geode::createLayerBG();
+	        bg->setColor(ccc3(255, 255, 255));
+	        bg->setZOrder(-2);
+		bg->setID("background"_spr);
+	        this->addChild(bg);
+	        if (auto oribg = this->getChildByID("menu")->getChildByID("background"))
+	            oribg->setVisible(false);
 	}
 };
 
 class $nodeModify(GPKofiLayer) {
 	void modify() {
 		if (Mod::get()->getSettingValue<bool>("BG") || !Mod::get()->getSettingValue<bool>("garage-plus")) return;
-        auto bg = geode::createLayerBG();
-        bg->setColor(ccc3(255, 255, 255));
-        bg->setZOrder(-2);
-        this->addChild(bg);
-        if (auto oribg = this->getChildByID("background"))
-            oribg->setVisible(false);
+	        auto bg = geode::createLayerBG();
+	        bg->setColor(ccc3(255, 255, 255));
+	        bg->setZOrder(-2);
+		bg->setID("background"_spr);
+	        this->addChild(bg);
+	        if (auto oribg = this->getChildByID("background"))
+	            oribg->setVisible(false);
 	}
 };
 
@@ -236,12 +247,13 @@ class $nodeModify(GPKofiLayer) {
 class $nodeModify(TextureWorkshopLayer) {
 	void modify() {
 		if (!Mod::get()->getSettingValue<bool>("BG") || !Mod::get()->getSettingValue<bool>("texture-workshop")) return;
-        auto bg = geode::createLayerBG();
-        bg->setColor(ccc3(255, 255, 255));
-        bg->setZOrder(-2);
-        this->addChild(bg);
-        if (auto oribg = this->getChildByID("background"))
-            oribg->setVisible(false);
+	        auto bg = geode::createLayerBG();
+	        bg->setColor(ccc3(255, 255, 255));
+	        bg->setZOrder(-2);
+		bg->setID("background"_spr);
+	        this->addChild(bg);
+	        if (auto oribg = this->getChildByID("background"))
+	            oribg->setVisible(false);
 	}
 };
 
