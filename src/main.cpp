@@ -6,15 +6,15 @@ using namespace geode::prelude;
 class $modify(MenuLayer) {
     bool init() {
         if (!MenuLayer::init()) return false;
-		if (Mod::get()->getSettingValue<bool>("BG") && Mod::get()->getSettingValue<bool>("menu-layer")) {
-			auto bg = geode::createLayerBG();
-			bg->setColor(ccc3(255, 255, 255));
-			bg->setZOrder(-19);
-			bg->setID("background"_spr);
-			this->addChild(bg);
-			// HIDE BASEGAMELAYER
-			if (this->m_menuGameLayer) this->m_menuGameLayer->setVisible(false);
-		}
+		if (!Mod::get()->getSettingValue<bool>("BG") || !Mod::get()->getSettingValue<bool>("menu-layer")) return true;
+
+		auto bg = geode::createLayerBG();
+		bg->setColor(ccc3(255, 255, 255));
+		bg->setZOrder(-19);
+		bg->setID("background"_spr);
+		this->addChild(bg);
+		// HIDE BASEGAMELAYER
+		if (this->m_menuGameLayer) this->m_menuGameLayer->setVisible(false);
 		return true;
     }
 };
@@ -23,15 +23,15 @@ class $modify(MenuLayer) {
 class $modify(LoadingLayer) {
     bool init(bool p) {
         if (!LoadingLayer::init(p)) return false;
-		if (Mod::get()->getSettingValue<bool>("BG") && Mod::get()->getSettingValue<bool>("loading-layer")) {
-			if (auto bg0 = this->getChildByID("bg-texture"))
-				bg0->setVisible(false);
-			auto bg = geode::createLayerBG();
-			bg->setColor(ccc3(255, 255, 255));
-			bg->setZOrder(-19);
-			bg->setID("background"_spr);
-			this->addChild(bg);
-		}
+		if (!Mod::get()->getSettingValue<bool>("BG") || !Mod::get()->getSettingValue<bool>("loading-layer")) return true;
+
+		if (auto bg0 = this->getChildByID("bg-texture"))
+			bg0->setVisible(false);
+		auto bg = geode::createLayerBG();
+		bg->setColor(ccc3(255, 255, 255));
+		bg->setZOrder(-19);
+		bg->setID("background"_spr);
+		this->addChild(bg);
 		return true;
     }
 };
@@ -40,15 +40,14 @@ class $modify(LoadingLayer) {
 class $modify(LevelSelectLayer) {
     bool init(int p) {
         if (!LevelSelectLayer::init(p)) return false;
-		if (Mod::get()->getSettingValue<bool>("BG") && Mod::get()->getSettingValue<bool>("level-select-layer")) {
-			if (auto bg0 = this->getChildByID("background"))
-				bg0->setVisible(false);
-			auto bg = geode::createLayerBG();
-			bg->setColor(ccc3(255, 255, 255));
-			bg->setZOrder(-19);
-			bg->setID("background"_spr);
-			this->addChild(bg);
-		}
+		if (!Mod::get()->getSettingValue<bool>("BG") || !Mod::get()->getSettingValue<bool>("level-select-layer")) return true;
+		if (auto bg0 = this->getChildByID("background"))
+			bg0->setVisible(false);
+		auto bg = geode::createLayerBG();
+		bg->setColor(ccc3(255, 255, 255));
+		bg->setZOrder(-19);
+		bg->setID("background"_spr);
+		this->addChild(bg);
 		return true;
     }
 };
@@ -101,7 +100,7 @@ class $modify(EditLevelLayer) {
 class $modify(LevelBrowserLayer) {
     bool init(GJSearchObject* search) {
 		if (!LevelBrowserLayer::init(search)) return false;
-		if (!Mod::get()->getSettingValue<bool>("BG")) return false;
+		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
 			if (auto bg = typeinfo_cast<CCSprite*>(node))
 				bg->setColor(ccc3(255, 255, 255));

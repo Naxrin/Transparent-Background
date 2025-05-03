@@ -1,3 +1,6 @@
+# 3.5.4
+- Fix a stupid LevelBrowserLayer crash
+
 # 3.5.3
 - some alter fix (thanks hiimjasmine)
 - add node ids for backgrounds added by this mod
