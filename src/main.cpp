@@ -218,7 +218,7 @@ class $modify(LevelListLayer) {
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
 			if (auto bg = typeinfo_cast<CCSprite*>(node)) {
-				if (!tryReplace(bg, list->m_isEditable ? "editor-lists" : "online-lists", fmt::format("{}", list->m_isEditable ? list->m_listName : numToString(list->m_listID)))
+				if (!tryReplace(bg, list->m_isEditable ? "editor-lists" : "online-lists", fmt::format("{}", list->m_isEditable ? list->m_listName : numToString(list->m_listID))))
 					tryReplace(bg, "layers", "LevelListLayer");
 				bg->setColor(ccc3(255, 255, 255));				
 			}
