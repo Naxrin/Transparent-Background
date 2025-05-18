@@ -1,3 +1,7 @@
+# 3.6.0
+- Allow separate wallpapers (read about.md for instruction)
+- Fix loading circle/plate not working
+
 # 3.5.4
 - Fix a stupid LevelBrowserLayer crash
 

@@ -1,16 +1,16 @@
 {
-	"geode": "4.3.1",
+	"geode": "4.4.0",
 	"gd": {
 		"win": "2.2074",
 		"android": "2.2074",
 		"mac": "2.2074",
 		"ios": "2.2074"
 	},
-	"version": "v3.5.4",
+	"version": "v3.6.0",
 	"id": "naxrin.transparent",
-	"name": "Transparent Background",
+	"name": "Transparent Wallpaper",
 	"developer": "Naxrin",
-	"description": "To be not only Transparent BG.",
+	"description": "Not only Transparent BG from now on",
 	"repository":"https://github.com/Naxrin/Transparent-Background",
 	"tags": ["interface"],
 	"early-load": true,
@@ -25,6 +25,7 @@
             "version": "v1.1.1",	
             "importance": "required"
 		}
+		
 	],
 	"settings": {
 		"BG": {
@@ -115,23 +116,21 @@
 			"type":"title"
 		},
 		"Circles": {
-			"name": "Customize Colors",
-			"description": "Enables customization of the loading circle and its round base.",
+			"name": "Loading Circles",
+			"description": "<cr>A bit Crash risky</c>",
 			"type": "bool",
-			"default": true
+			"default": false
 		},
 		"plate": {
 			"name": "Loading Plate Color",
 			"description": "Customize the color of the loading module's round plate.\nSuggest a color similar to your background",
 			"type": "color",
-			"enable-if": "Circles",
 			"default": "000000"
 		},
 		"circle": {
 			"name": "Loading Circle Color",
 			"description": "Customize the color of the color of the loading module's round plate.\nSuggest a color that differs as far as possible to your plate color",
 			"type": "color",
-			"enable-if": "Circles",
 			"default": "FFFFFF"
 		}
 	}

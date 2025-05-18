@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include "head.hpp"
 
 using namespace geode::prelude;
 
@@ -6,15 +6,16 @@ using namespace geode::prelude;
 class $modify(MenuLayer) {
     bool init() {
         if (!MenuLayer::init()) return false;
-		if (!Mod::get()->getSettingValue<bool>("BG") || !Mod::get()->getSettingValue<bool>("menu-layer")) return true;
-
-		auto bg = geode::createLayerBG();
-		bg->setColor(ccc3(255, 255, 255));
-		bg->setZOrder(-19);
-		bg->setID("background"_spr);
-		this->addChild(bg);
-		// HIDE BASEGAMELAYER
-		if (this->m_menuGameLayer) this->m_menuGameLayer->setVisible(false);
+		if (Mod::get()->getSettingValue<bool>("BG") && Mod::get()->getSettingValue<bool>("menu-layer")) {
+			auto bg = geode::createLayerBG();
+			tryReplace(bg, "layers", "MenuLayer");
+			bg->setColor(ccc3(255, 255, 255));
+			bg->setZOrder(-19);
+			bg->setID("background"_spr);
+			this->addChild(bg);
+			// HIDE BASEGAMELAYER
+			if (this->m_menuGameLayer) this->m_menuGameLayer->setVisible(false);
+		}
 		return true;
     }
 };
@@ -23,15 +24,16 @@ class $modify(MenuLayer) {
 class $modify(LoadingLayer) {
     bool init(bool p) {
         if (!LoadingLayer::init(p)) return false;
-		if (!Mod::get()->getSettingValue<bool>("BG") || !Mod::get()->getSettingValue<bool>("loading-layer")) return true;
-
-		if (auto bg0 = this->getChildByID("bg-texture"))
-			bg0->setVisible(false);
-		auto bg = geode::createLayerBG();
-		bg->setColor(ccc3(255, 255, 255));
-		bg->setZOrder(-19);
-		bg->setID("background"_spr);
-		this->addChild(bg);
+		if (Mod::get()->getSettingValue<bool>("BG") && Mod::get()->getSettingValue<bool>("loading-layer")) {
+			if (auto bg0 = this->getChildByID("bg-texture"))
+				bg0->setVisible(false);
+			auto bg = geode::createLayerBG();
+			tryReplace(bg, "layers", "LoadingLayer");
+			bg->setColor(ccc3(255, 255, 255));
+			bg->setZOrder(-19);
+			bg->setID("background"_spr);
+			this->addChild(bg);
+		}
 		return true;
     }
 };
@@ -40,14 +42,16 @@ class $modify(LoadingLayer) {
 class $modify(LevelSelectLayer) {
     bool init(int p) {
         if (!LevelSelectLayer::init(p)) return false;
-		if (!Mod::get()->getSettingValue<bool>("BG") || !Mod::get()->getSettingValue<bool>("level-select-layer")) return true;
-		if (auto bg0 = this->getChildByID("background"))
-			bg0->setVisible(false);
-		auto bg = geode::createLayerBG();
-		bg->setColor(ccc3(255, 255, 255));
-		bg->setZOrder(-19);
-		bg->setID("background"_spr);
-		this->addChild(bg);
+		if (Mod::get()->getSettingValue<bool>("BG") && Mod::get()->getSettingValue<bool>("level-select-layer")) {
+			if (auto bg0 = this->getChildByID("background"))
+				bg0->setVisible(false);
+			auto bg = geode::createLayerBG();
+			tryReplace(bg, "layers", "LevelSelectLayer");
+			bg->setColor(ccc3(255, 255, 255));
+			bg->setZOrder(-19);
+			bg->setID("background"_spr);
+			this->addChild(bg);
+		}
 		return true;
     }
 };
@@ -58,8 +62,11 @@ class $modify(CreatorLayer) {
         if (!CreatorLayer::init()) return false;
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
-			if (auto bg = typeinfo_cast<CCSprite*>(node))
+			if (auto bg = typeinfo_cast<CCSprite*>(node)) {
+				tryReplace(bg, "layers", "CreatorLayer");
 				bg->setColor(ccc3(255, 255, 255));
+			}
+
 		return true;
     }
 };
@@ -70,8 +77,10 @@ class $modify(GJGarageLayer) {
         if (!GJGarageLayer::init()) return false;
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
-			if (auto bg = typeinfo_cast<CCSprite*>(node))
+			if (auto bg = typeinfo_cast<CCSprite*>(node)) {
+				tryReplace(bg, "layers", "GJGarageLayer");
 				bg->setColor(ccc3(255, 255, 255));
+			}
 		return true;		
     }
 };
@@ -89,9 +98,11 @@ class $modify(EditLevelLayer) {
 		}
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
-			if (auto bg = typeinfo_cast<CCSprite*>(node))
+			if (auto bg = typeinfo_cast<CCSprite*>(node)) {
+				if (!tryReplace(bg, "editor_levels", level->m_levelName))
+				tryReplace(bg, "layers", "EditLevelLayer");
 				bg->setColor(ccc3(255, 255, 255));
-
+			}
 		return true;
     }
 };
@@ -102,8 +113,10 @@ class $modify(LevelBrowserLayer) {
 		if (!LevelBrowserLayer::init(search)) return false;
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
-			if (auto bg = typeinfo_cast<CCSprite*>(node))
+			if (auto bg = typeinfo_cast<CCSprite*>(node)) {
+				tryReplace(bg, "layers", "LevelBrowwserLayer");
 				bg->setColor(ccc3(255, 255, 255));
+			}
 		return true;
     }
 };
@@ -115,8 +128,18 @@ class $modify(LevelInfoLayer) {
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
 			if (auto bg = typeinfo_cast<CCSprite*>(node)) {
-				bool dark = Mod::get()->getSettingValue<bool>("dark") && (level->m_gauntletLevel || level->m_dailyID.value() > 0);
-				bg->setColor(dark ? ccc3(100, 100, 100): ccc3(255, 255, 255));				
+				bool isGauntlet = level->m_gauntletLevel || level->m_gauntletLevel2;
+				bool isTimely = level->m_dailyID.value() > 0;
+				if (!tryReplace(bg, "online_levels", level->m_levelID)) {
+					if (isGauntlet) {
+						if (!tryReplace(bg, "entry", "gauntlet"))
+							tryReplace(bg, "layers", "LevelInfoLayer");						
+					}
+					else if (isTimely)
+						if (!tryReplace(bg, "entry", level->m_dailyID.value() > 2000000 ? "event" : (level->m_dailyID.value() > 1000000 ? "weekly" : "daily")))
+							tryReplace(bg, "layers", "LevelInfoLayer");					
+				}
+				bg->setColor(Mod::get()->getSettingValue<bool>("dark") && (isGauntlet || isTimely) ? ccc3(100, 100, 100): ccc3(255, 255, 255));				
 			}
 		
 		return true;
@@ -124,7 +147,6 @@ class $modify(LevelInfoLayer) {
 
     void onPlay(cocos2d::CCObject* sender) {
         LevelInfoLayer::onPlay(sender);
-		// test will change
 		if (!Mod::get()->getSettingValue<bool>("Circles")) return;
 
 		if (m_playSprite->getChildrenCount() >= 3) {
@@ -165,8 +187,11 @@ class $modify(LevelSearchLayer) {
 		
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
-			if (auto bg = typeinfo_cast<CCSprite*>(node))
-				bg->setColor(ccc3(255, 255, 255));
+			if (auto bg = typeinfo_cast<CCSprite*>(node)) {
+				tryReplace(bg, "layers", "LevelSearchLayer");
+				bg->setColor(ccc3(255, 255, 255));				
+			}
+
 		return true;
     }
 };
@@ -177,8 +202,11 @@ class $modify(LeaderboardsLayer) {
 		if (!LeaderboardsLayer::init(state)) return false;
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
-			if (auto bg = typeinfo_cast<CCSprite*>(node))
-				bg->setColor(ccc3(255, 255, 255));
+			if (auto bg = typeinfo_cast<CCSprite*>(node)) {
+				tryReplace(bg, "layers", "LeaderboardsLayer");
+				bg->setColor(ccc3(255, 255, 255));				
+			}
+
 		return true;		
     }
 };
@@ -189,8 +217,11 @@ class $modify(LevelListLayer) {
 		if (!LevelListLayer::init(list)) return false;
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
-			if (auto bg = typeinfo_cast<CCSprite*>(node))
-				bg->setColor(ccc3(255, 255, 255));
+			if (auto bg = typeinfo_cast<CCSprite*>(node)) {
+				if (!tryReplace(bg, list->m_isEditable ? "editor-lists" : "online-lists", list->m_isEditable ? list->m_listName : numToString(list->m_listID)))
+					tryReplace(bg, "layers", "LevelListLayer");
+				bg->setColor(ccc3(255, 255, 255));				
+			}
 		return true;
     }
 };
@@ -201,8 +232,11 @@ class $modify(GauntletSelectLayer) {
 		if (!GauntletSelectLayer::init(p)) return false;
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
-			if (auto bg = typeinfo_cast<CCSprite*>(node))
-				bg->setColor(ccc3(255, 255, 255));
+			if (auto bg = typeinfo_cast<CCSprite*>(node)) {
+				tryReplace(bg, "layers", "GauntletSelectLayer");
+				bg->setColor(ccc3(255, 255, 255));				
+			}
+
 		return true;
     }
 };
@@ -216,6 +250,8 @@ class $modify(GauntletLayer) {
 		if (auto bg0 = this->getChildByID("background"))
 			bg0->setVisible(false);
 		auto bg = geode::createLayerBG();
+		if (!tryReplace(bg, "gauntlet", gauntletIndex[(int)p - 1]))
+			tryReplace(bg, "layers", "GauntletSelectLayer");
 		bg->setColor({255, 255, 255});
 		bg->setZOrder(-19);
 		bg->setID("background"_spr);
