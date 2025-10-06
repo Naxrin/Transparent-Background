@@ -1,3 +1,9 @@
+# 3.6.1
+- Fix Cosmos Gauntlet crash (no one reports this until I clicked the gauntlet myself?)
+#### Note
+- Keybind UI soon
+- Will consider shader (may not)
+
 # 3.6.0
 - Allow separate wallpapers (read about.md for instruction)
 - Fix loading circle/plate not working

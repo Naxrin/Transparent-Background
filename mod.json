@@ -6,27 +6,26 @@
 		"mac": "2.2074",
 		"ios": "2.2074"
 	},
-	"version": "v3.6.0",
+	"version": "v3.6.1",
 	"id": "naxrin.transparent",
 	"name": "Transparent Wallpaper",
 	"developer": "Naxrin",
 	"description": "Not only Transparent BG from now on",
-	"repository":"https://github.com/Naxrin/Transparent-Background",
+	"links": {
+		"source": "https://github.com/Naxrin/Transparent-Background"
+	},
 	"tags": ["interface"],
 	"early-load": true,
-	"dependencies": [
-		{
-			"id": "geode.node-ids",
+	"dependencies": {
+		"geode.node-ids": {
 			"version": "v1.20.1",
-			"importance":"required"
+			"importance":"required"			
 		},
-		{
-        	"id": "alphalaneous.alphas_geode_utils",
-            "version": "v1.1.1",	
+		"alphalaneous.alphas_geode_utils": {
+            "version": "v1.1.1",
             "importance": "required"
 		}
-		
-	],
+	},
 	"settings": {
 		"BG": {
             "name": "Switch",

@@ -7,7 +7,7 @@ const auto CONFIG = Mod::get()->getConfigDir();
 
 const static std::vector<std::string> gauntletIndex = {
     "Fire", "Ice", "Poison", "Shadow", "Lava", "Bonus", "Chaos", "Demon", "Time",
-    "Crystal" "Magic", "Spike", "Monster", "Doom", "Death", "Forest", "Rune", "Force",
+    "Crystal", "Magic", "Spike", "Monster", "Doom", "Death", "Forest", "Rune", "Force",
     "Spooky", "Dragon", "Water", "Haunted", "Acid", "Witch", "Power", "Potion", "Snake",
     "Toxic", "Halloween", "Treasure", "Ghost", "Spider", "Gem", "Inferno", "Portal", "Strange",
     "Fantasy", "Christmas", "Surprise", "Mystery", "Cursed", "Cyborg", "Castle", "Grave", "Temple",

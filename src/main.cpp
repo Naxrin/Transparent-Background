@@ -250,8 +250,12 @@ class $modify(GauntletLayer) {
 		if (auto bg0 = this->getChildByID("background"))
 			bg0->setVisible(false);
 		auto bg = geode::createLayerBG();
+
+		// out of index error escape
+		if ((int)p - 1 >= gauntletIndex.size())
+			return true;
 		if (!tryReplace(bg, "gauntlet", gauntletIndex[(int)p - 1]))
-			tryReplace(bg, "layers", "GauntletSelectLayer");
+			tryReplace(bg, "layers", "GauntletLayer");
 		bg->setColor({255, 255, 255});
 		bg->setZOrder(-19);
 		bg->setID("background"_spr);
