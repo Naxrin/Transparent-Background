@@ -12,7 +12,7 @@ project(Transparent VERSION 1.0.0)
 
 add_library(${PROJECT_NAME} SHARED
     src/main.cpp
-    src/external.cpp
+    # src/external.cpp
     src/head.hpp
 )
 
@@ -25,3 +25,4 @@ endif()
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
 setup_geode_mod(${PROJECT_NAME})
+
