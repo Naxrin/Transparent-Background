@@ -198,8 +198,8 @@ class $modify(LevelSearchLayer) {
 
 #include <Geode/modify/LeaderboardsLayer.hpp>
 class $modify(LeaderboardsLayer) {
-    bool init(LeaderboardState state) {
-		if (!LeaderboardsLayer::init(state)) return false;
+    bool init(LeaderboardType type, LeaderboardStat stat) {
+		if (!LeaderboardsLayer::init(type, stat)) return false;
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
 			if (auto bg = typeinfo_cast<CCSprite*>(node)) {

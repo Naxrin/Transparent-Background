@@ -1,14 +1,14 @@
 {
-	"geode": "4.4.0",
+	"geode": "5.0.0-alpha.1",
 	"gd": {
-		"win": "2.2074",
-		"android": "2.2074",
-		"mac": "2.2074",
-		"ios": "2.2074"
+		"win":"2.2081",
+		"android":"2.2081",
+		"mac":"2.2081",
+		"ios":"2.2081"
 	},
-	"version": "v3.6.1",
+	"version": "v4.6.0-alpha.1",
 	"id": "naxrin.transparent",
-	"name": "Transparent Wallpaper",
+	"name": "Transparent Background",
 	"developer": "Naxrin",
 	"description": "Not only Transparent BG from now on",
 	"links": {
@@ -23,7 +23,7 @@
 		},
 		"alphalaneous.alphas_geode_utils": {
             "version": "v1.1.1",
-            "importance": "required"
+            "importance": "recommended"
 		}
 	},
 	"settings": {

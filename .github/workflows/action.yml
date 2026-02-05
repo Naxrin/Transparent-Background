@@ -44,6 +44,7 @@ jobs:
           # bindings: RayDeeUx/bindings
           # bindings-ref: "foobar"
           combine: true
+          sdk: nightly
           target: ${{ matrix.config.target }}
 
   package:

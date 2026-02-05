@@ -1,3 +1,9 @@
+# 4.6.1-alpha.1
+- Bump version to geode 5.x @ GD 2.2081
+- Along with new gauntlet supports
+- New mod logo
+- ToDo (perhaps): wallpaper UI
+
 # 3.6.1
 - Fix Cosmos Gauntlet crash (no one reports this until I clicked the gauntlet myself?)
 #### Note
@@ -5,7 +11,7 @@
 - Will consider shader (may not)
 
 # 3.6.0
-- Allow separate wallpapers (read about.md for instruction)
+- Allow separate wallpapers (read description for instruction)
 - Fix loading circle/plate not working
 
 # 3.5.4
