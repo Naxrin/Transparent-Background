@@ -130,7 +130,7 @@ class $modify(LevelInfoLayer) {
 			if (auto bg = typeinfo_cast<CCSprite*>(node)) {
 				bool isGauntlet = level->m_gauntletLevel || level->m_gauntletLevel2;
 				bool isTimely = level->m_dailyID.value() > 0;
-				if (!tryReplace(bg, "online_levels", numToString(level->m_levelID))) {
+				if (!tryReplace(bg, "online_levels", numToString(level->m_levelID.value()))) {
 					if (isGauntlet) {
 						if (!tryReplace(bg, "entry", "gauntlet"))
 							tryReplace(bg, "layers", "LevelInfoLayer");						
