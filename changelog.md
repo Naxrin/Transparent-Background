@@ -1,3 +1,7 @@
+# 4.6.1-beta.2
+- Rebuild for geode 5.0.0-alpha.2
+- Nothing more
+
 # 4.6.1-alpha.1
 - Bump version to geode 5.x @ GD 2.2081
 - Along with new gauntlet supports
