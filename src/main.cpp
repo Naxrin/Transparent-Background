@@ -90,12 +90,18 @@ class $modify(EditLevelLayer) {
     bool init(GJGameLevel* level) {
 		if (!EditLevelLayer::init(level)) return false;
 		// frame
-		if (Mod::get()->getSettingValue<bool>("frame")) {
-			if (auto n = this->getChildByID("level-name-background"))
-				n->setVisible(false);
-			if (auto n = this->getChildByID("description-background"))
-				n->setVisible(false);
+		auto alpha = Mod::get()->getSettingValue<int64_t>("frame-opacity");
+
+		if (auto n = this->getChildByID("level-name-background")) {
+			static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
+			static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
 		}
+
+		if (auto n = this->getChildByID("description-background")) {
+			static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
+			static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
+		}
+
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
 			if (auto bg = typeinfo_cast<CCSprite*>(node)) {
@@ -103,8 +109,29 @@ class $modify(EditLevelLayer) {
 				tryReplace(bg, "layers", "EditLevelLayer");
 				bg->setColor(ccc3(255, 255, 255));
 			}
+			
 		return true;
     }
+
+	void onBack(CCObject* sender) {
+		if (!Mod::get()->setSavedValue("alpha-notify", true))
+			geode::createQuickPopup(
+				"Where comes these black frames?",
+				"Your Transparent Background mod removes the option of setting those frames invisible but instead,"
+				"I add another option to set their opacity and set their color to black. I set the default value to 100/255, "
+				"in case you hope to keep it as if unchanged, 0 means full transparent and 255 means full visible. "
+				"If you feel these frames look haunted in half transparent, Happy Textures should be the solution.\n"
+				"<cy>For now, do you hope to set them invisible?</c>",
+				"No for now", "Yes please", 420.f,
+				[this, sender] (FLAlertLayer*, bool yes) {
+					if (yes)
+						Mod::get()->setSettingValue("frame-opacity", 0);
+					EditLevelLayer::onBack(sender);
+				}
+			);
+		else
+			EditLevelLayer::onBack(sender);
+	}
 };
 
 #include <Geode/modify/LevelBrowserLayer.hpp>
@@ -171,18 +198,28 @@ class $modify(LevelSearchLayer) {
     bool init(int p) {
 		if (!LevelSearchLayer::init(p)) return false;
 
-		// to edit
-		if (Mod::get()->getSettingValue<bool>("frame")) {
-			if (auto n = this->getChildByID("level-search-bg"))
-				n->setVisible(false);
-			if (auto n = this->getChildByID("level-search-bar-bg"))
-				n->setVisible(false);
-			if (auto n = this->getChildByID("quick-search-bg"))
-				n->setVisible(false);
-			if (auto n = this->getChildByID("difficulty-filters-bg"))
-				n->setVisible(false);
-			if (auto n = this->getChildByID("length-filters-bg"))
-				n->setVisible(false);
+		// frames
+		auto alpha = Mod::get()->getSettingValue<int64_t>("frame-opacity");
+
+		if (auto n = this->getChildByID("level-search-bg")) {
+			static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
+			static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
+		}
+		if (auto n = this->getChildByID("level-search-bar-bg")) {
+			static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
+			static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
+		}
+		if (auto n = this->getChildByID("quick-search-bg")) {
+			static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
+			static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
+		}
+		if (auto n = this->getChildByID("difficulty-filters-bg")) {
+			static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
+			static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
+		}
+		if (auto n = this->getChildByID("length-filters-bg")) {
+			static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
+			static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
 		}
 		
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
@@ -194,6 +231,25 @@ class $modify(LevelSearchLayer) {
 
 		return true;
     }
+	void onBack(CCObject* sender) {
+		if (!Mod::get()->setSavedValue("alpha-notify", true))
+			geode::createQuickPopup(
+				"Where comes these black frames?",
+				"Your Transparent Background mod removes the option of setting those frames invisible but instead,"
+				"I add another option to set their opacity and set their color to black. I set the default value to 100/255, "
+				"in case you hope to keep it as if unchanged, 0 means full transparent and 255 means full visible. "
+				"If you feel these frames look haunted in half transparent, Happy Textures should be the solution.\n"
+				"<cy>For now, do you hope to set them invisible?</c>",
+				"No for now", "Yes please", 420.f,
+				[this, sender] (FLAlertLayer*, bool yes) {
+					if (yes)
+						Mod::get()->setSettingValue("frame-opacity", 0);
+					LevelSearchLayer::onBack(sender);
+				}
+			);
+		else
+			LevelSearchLayer::onBack(sender);
+	}
 };
 
 #include <Geode/modify/LeaderboardsLayer.hpp>

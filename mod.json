@@ -1,12 +1,12 @@
 {
-	"geode": "5.0.0-alpha.2",
+	"geode": "5.0.0-beta.1",
 	"gd": {
 		"win":"2.2081",
 		"android":"2.2081",
 		"mac":"2.2081",
 		"ios":"2.2081"
 	},
-	"version": "v4.6.1-beta.2",
+	"version": "v4.6.1",
 	"id": "naxrin.transparent",
 	"name": "Transparent Background",
 	"developer": "Naxrin",
@@ -14,12 +14,16 @@
 	"links": {
 		"source": "https://github.com/Naxrin/Transparent-Background"
 	},
-	"tags": ["interface"],
+	"tags": ["interface", "offline"],
 	"early-load": true,
 	"dependencies": {
 		"geode.node-ids": {
-			"version": "v1.22.0-alpha.1",
+			"version": "v1.22.0",
 			"importance":"required"			
+		},
+		"alphalaneous.alphas_geode_utils": {
+            "version": "v1.2.0",
+            "importance": "required"
 		}
 	},
 	"settings": {
@@ -93,11 +97,13 @@
 			"description": "Some small options of details.",
 			"type":"title"
 		},
-		"frame": {
-			"name": "Remove Frames",
-			"description": "Set the frames in Edit Level Layer and LevelSearchLayer to invisible transparent\nYou can enable it individually (This option works even when <cb>Transparent BG</c> option is disabled)",
-			"type": "bool",
-			"default": true
+		"frame-opacity": {
+			"name": "Frames Opacity",
+			"description": "Set the opacity of frames in Edit Level Layer and LevelSearchLayer.\n0 means full transparent and 255 means full visible\nNeeds Happy Textures Loaded if you feel them weird in half transparent.",
+			"type": "int",
+			"default": 100,
+			"min": 0,
+			"max": 255
 		},
 		"dark": {
 			"name": "Dark Timely/Event/Gauntlets",

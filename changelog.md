@@ -1,3 +1,8 @@
+# 4.6.1
+- Rebuild for geode 5.0.0-beta.1 and future stable versions
+- Set frames' opacity instead
+- Custom menus from other mods support (along with Alphas Geode Utils as dependency) back
+
 # 4.6.1-beta.2
 - Rebuild for geode 5.0.0-alpha.2
 - Nothing more
