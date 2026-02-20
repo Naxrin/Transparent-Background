@@ -2,6 +2,28 @@
 
 using namespace geode::prelude;
 
+NineSlice* replaceNode(CCScale9Sprite* target, const char* sprite, GLubyte alpha) {
+	auto pos = target->getPosition();
+	auto size = target->getContentSize();
+	auto z = target->getZOrder();
+	auto id = target->getID();
+	auto tag = target->getTag();
+
+	target->removeFromParentAndCleanup(true);
+	auto slice = NineSlice::create(sprite);
+
+	slice->setPosition(pos);
+	slice->setContentSize(size);
+	slice->setZOrder(z);
+	slice->setID(id);
+	slice->setTag(tag);
+	slice->setOpacity(alpha);
+	slice->setColor(ccc3(0, 0, 0));
+
+	return slice;
+
+}
+
 #include <Geode/modify/MenuLayer.hpp>
 class $modify(MenuLayer) {
     bool init() {
@@ -81,7 +103,7 @@ class $modify(GJGarageLayer) {
 				tryReplace(bg, "layers", "GJGarageLayer");
 				bg->setColor(ccc3(255, 255, 255));
 			}
-		return true;		
+		return true;
     }
 };
 
@@ -92,21 +114,29 @@ class $modify(EditLevelLayer) {
 		// frame
 		auto alpha = Mod::get()->getSettingValue<int64_t>("frame-opacity");
 
-		if (auto n = this->getChildByID("level-name-background")) {
-			static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
-			static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
-		}
+		if (Mod::get()->getSettingValue<bool>("replace-frames")) {
+			if (auto n = this->getChildByID("level-name-background"))
+				this->addChild(replaceNode(static_cast<CCScale9Sprite*>(n), "square02b_001.png", alpha));
 
-		if (auto n = this->getChildByID("description-background")) {
-			static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
-			static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
+			if (auto n = this->getChildByID("description-background"))
+				this->addChild(replaceNode(static_cast<CCScale9Sprite*>(n), "square02b_001.png", alpha));			
+		} else {
+			if (auto n = this->getChildByID("level-name-background")) {
+				static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
+				static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
+			}
+
+			if (auto n = this->getChildByID("description-background")) {
+				static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
+				static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
+			}			
 		}
 
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
 			if (auto bg = typeinfo_cast<CCSprite*>(node)) {
 				if (!tryReplace(bg, "editor_levels", level->m_levelName))
-				tryReplace(bg, "layers", "EditLevelLayer");
+					tryReplace(bg, "layers", "EditLevelLayer");
 				bg->setColor(ccc3(255, 255, 255));
 			}
 			
@@ -114,14 +144,16 @@ class $modify(EditLevelLayer) {
     }
 
 	void onBack(CCObject* sender) {
-		if (!Mod::get()->setSavedValue("alpha-notify", true))
+		if (!Mod::get()->setSavedValue("replace-notify", true))
 			geode::createQuickPopup(
 				"Where comes these black frames?",
 				"Your Transparent Background mod removes the option of setting those frames invisible but instead,"
-				"I add another option to set their opacity and set their color to black. I set the default value to 100/255, "
+				"I add another option to replace each of them to a NineSlice and set their opacity and set their color to black."
+				"Their opacity values are optional, here I've set it to 100/255 as default."
 				"in case you hope to keep it as if unchanged, 0 means full transparent and 255 means full visible. "
-				"If you feel these frames look haunted in half transparent, Happy Textures should be the solution.\n"
-				"<cy>For now, do you hope to set them invisible?</c>",
+				"If you feel these frames look haunted in half transparent, try to check Remove Frames option of this mod.\n"
+				"If your game crashes unexpectedly, uncheck the option as quick as possible."
+				"<cy>Do you hope to turn it on right now? Taking effect next time.</c>",
 				"No for now", "Yes please", 420.f,
 				[this, sender] (FLAlertLayer*, bool yes) {
 					if (yes)
@@ -201,26 +233,44 @@ class $modify(LevelSearchLayer) {
 		// frames
 		auto alpha = Mod::get()->getSettingValue<int64_t>("frame-opacity");
 
-		if (auto n = this->getChildByID("level-search-bg")) {
-			static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
-			static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
+		if (Mod::get()->getSettingValue<bool>("replace-frames")) {
+			if (auto n = this->getChildByID("level-search-bg"))
+				this->addChild(replaceNode(static_cast<CCScale9Sprite*>(n), "square02b_001.png", alpha));
+
+			if (auto n = this->getChildByID("level-search-bar-bg"))
+				this->addChild(replaceNode(static_cast<CCScale9Sprite*>(n), "square02b_small.png", alpha));
+
+			if (auto n = this->getChildByID("quick-search-bg"))
+				this->addChild(replaceNode(static_cast<CCScale9Sprite*>(n), "square02b_001.png", alpha));
+
+			if (auto n = this->getChildByID("difficulty-filters-bg"))
+				this->addChild(replaceNode(static_cast<CCScale9Sprite*>(n), "square02b_001.png", alpha));
+
+			if (auto n = this->getChildByID("length-filters-bg"))
+				this->addChild(replaceNode(static_cast<CCScale9Sprite*>(n), "square02b_001.png", alpha));			
+		} else {
+			if (auto n = this->getChildByID("level-search-bg")) {
+				static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
+				static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
+			}
+			if (auto n = this->getChildByID("level-search-bar-bg")) {
+				static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
+				static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
+			}
+			if (auto n = this->getChildByID("quick-search-bg")) {
+				static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
+				static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
+			}
+			if (auto n = this->getChildByID("difficulty-filters-bg")) {
+				static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
+				static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
+			}
+			if (auto n = this->getChildByID("length-filters-bg")) {
+				static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
+				static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
+			}
 		}
-		if (auto n = this->getChildByID("level-search-bar-bg")) {
-			static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
-			static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
-		}
-		if (auto n = this->getChildByID("quick-search-bg")) {
-			static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
-			static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
-		}
-		if (auto n = this->getChildByID("difficulty-filters-bg")) {
-			static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
-			static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
-		}
-		if (auto n = this->getChildByID("length-filters-bg")) {
-			static_cast<CCScale9Sprite*>(n)->setOpacity(alpha);
-			static_cast<CCScale9Sprite*>(n)->setColor(ccc3(0, 0, 0));
-		}
+
 		
 		if (!Mod::get()->getSettingValue<bool>("BG")) return true;
 		if (auto node = this->getChildByID("background"))
@@ -232,14 +282,16 @@ class $modify(LevelSearchLayer) {
 		return true;
     }
 	void onBack(CCObject* sender) {
-		if (!Mod::get()->setSavedValue("alpha-notify", true))
+		if (!Mod::get()->setSavedValue("replace-notify", true))
 			geode::createQuickPopup(
 				"Where comes these black frames?",
 				"Your Transparent Background mod removes the option of setting those frames invisible but instead,"
-				"I add another option to set their opacity and set their color to black. I set the default value to 100/255, "
+				"I add another option to replace each of them to a NineSlice and set their opacity and set their color to black."
+				"Their opacity values are optional, here I've set it to 100/255 as default."
 				"in case you hope to keep it as if unchanged, 0 means full transparent and 255 means full visible. "
-				"If you feel these frames look haunted in half transparent, Happy Textures should be the solution.\n"
-				"<cy>For now, do you hope to set them invisible?</c>",
+				"If you feel these frames look haunted in half transparent, try to check Remove Frames option of this mod.\n"
+				"If your game crashes unexpectedly, uncheck the option as quick as possible."
+				"<cy>Do you hope to turn it on right now? Taking effect next time.</c>",
 				"No for now", "Yes please", 420.f,
 				[this, sender] (FLAlertLayer*, bool yes) {
 					if (yes)

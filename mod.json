@@ -6,7 +6,7 @@
 		"mac":"2.2081",
 		"ios":"2.2081"
 	},
-	"version": "v4.6.1",
+	"version": "v4.6.2",
 	"id": "naxrin.transparent",
 	"name": "Transparent Background",
 	"developer": "Naxrin",
@@ -96,6 +96,12 @@
 			"name": "Detail Options",
 			"description": "Some small options of details.",
 			"type":"title"
+		},
+		"replace-frames": {
+			"name": "Replace Frames",
+			"description": "Check it and some blue frames will be replaced with geode class NineSlice, unless the option below will work weird.\nTurn it off if your game crashes at level search menu (LevelSearchLayer) or edit level entrance menu (EditLevelLayer), and report it to me.",
+			"type": "bool",
+			"default": false
 		},
 		"frame-opacity": {
 			"name": "Frames Opacity",

@@ -1,3 +1,7 @@
+# 4.6.2
+- Replace those blue frames to NineSlice and make the black frames look not weird.
+- **Turn OFF the Replace Frames option if your game crashes at level search menu (LevelSearchLayer) or edit level entrance menu (EditLevelLayer), and report it to me.**
+
 # 4.6.1
 - Rebuild for geode 5.0.0-beta.1 and future stable versions
 - Set frames' opacity instead
