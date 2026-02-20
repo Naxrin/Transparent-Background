@@ -112,9 +112,9 @@ class $modify(EditLevelLayer) {
     bool init(GJGameLevel* level) {
 		if (!EditLevelLayer::init(level)) return false;
 		// frame
-		auto alpha = Mod::get()->getSettingValue<int64_t>("frame-opacity");
+		GLubyte alpha = Mod::get()->getSavedValue<bool>("replace-notify", false) ? Mod::get()->getSettingValue<int64_t>("frame-opacity") : 144;
 
-		if (Mod::get()->getSettingValue<bool>("replace-frames")) {
+		if (Mod::get()->getSettingValue<bool>("replace-frames") || !Mod::get()->getSavedValue<bool>("replace-notify", false)) {
 			if (auto n = this->getChildByID("level-name-background"))
 				this->addChild(replaceNode(static_cast<CCScale9Sprite*>(n), "square02b_001.png", alpha));
 
@@ -147,17 +147,17 @@ class $modify(EditLevelLayer) {
 		if (!Mod::get()->setSavedValue("replace-notify", true))
 			geode::createQuickPopup(
 				"Where comes these black frames?",
-				"Your Transparent Background mod removes the option of setting those frames invisible but instead,"
-				"I add another option to replace each of them to a NineSlice and set their opacity and set their color to black."
-				"Their opacity values are optional, here I've set it to 100/255 as default."
-				"in case you hope to keep it as if unchanged, 0 means full transparent and 255 means full visible. "
-				"If you feel these frames look haunted in half transparent, try to check Remove Frames option of this mod.\n"
-				"If your game crashes unexpectedly, uncheck the option as quick as possible."
-				"<cy>Do you hope to turn it on right now? Taking effect next time.</c>",
-				"No for now", "Yes please", 420.f,
+				"Your Transparent Background mod removes the option of setting those frames invisible but instead, "
+				"their colors are now black, and it's now optional to replace each of them with a NineSlice "
+				"to avoid them from looking haunted, but it's slightly crash risky if you load mods that confict with this in the future. "
+				"Their opacity values are also optional, here is 144/255 opacity as showcase,\n"
+				"<cg>Click Yes please to keep your frames like such in case you are satisfied with such effect;</c>\n"
+				"<cr>Or click No for now in case you hate game crash all the time (will directly hide frames).</c>",
+				"No for now", "Yes please", 450.f,
 				[this, sender] (FLAlertLayer*, bool yes) {
-					if (yes)
-						Mod::get()->setSettingValue("frame-opacity", 0);
+					Mod::get()->setSettingValue("replace-frames", yes);
+					Mod::get()->setSettingValue("frame-opacity", 144 * yes);
+
 					EditLevelLayer::onBack(sender);
 				}
 			);
@@ -231,9 +231,9 @@ class $modify(LevelSearchLayer) {
 		if (!LevelSearchLayer::init(p)) return false;
 
 		// frames
-		auto alpha = Mod::get()->getSettingValue<int64_t>("frame-opacity");
+		GLubyte alpha = Mod::get()->getSavedValue<bool>("replace-notify", false) ? Mod::get()->getSettingValue<int64_t>("frame-opacity") : 144;
 
-		if (Mod::get()->getSettingValue<bool>("replace-frames")) {
+		if (Mod::get()->getSettingValue<bool>("replace-frames") || !Mod::get()->getSavedValue<bool>("replace-notify", false)) {
 			if (auto n = this->getChildByID("level-search-bg"))
 				this->addChild(replaceNode(static_cast<CCScale9Sprite*>(n), "square02b_001.png", alpha));
 
@@ -285,17 +285,17 @@ class $modify(LevelSearchLayer) {
 		if (!Mod::get()->setSavedValue("replace-notify", true))
 			geode::createQuickPopup(
 				"Where comes these black frames?",
-				"Your Transparent Background mod removes the option of setting those frames invisible but instead,"
-				"I add another option to replace each of them to a NineSlice and set their opacity and set their color to black."
-				"Their opacity values are optional, here I've set it to 100/255 as default."
-				"in case you hope to keep it as if unchanged, 0 means full transparent and 255 means full visible. "
-				"If you feel these frames look haunted in half transparent, try to check Remove Frames option of this mod.\n"
-				"If your game crashes unexpectedly, uncheck the option as quick as possible."
-				"<cy>Do you hope to turn it on right now? Taking effect next time.</c>",
-				"No for now", "Yes please", 420.f,
+				"Your Transparent Background mod removes the option of setting those frames invisible but instead, "
+				"their colors are now black, and it's now optional to replace each of them with a NineSlice "
+				"to avoid them from looking haunted, but it's slightly crash risky if you load mods that confict with this in the future. "
+				"Their opacity values are also optional, here is 144/255 opacity as showcase,\n"
+				"<cg>Click Yes please to keep your frames like such in case you are satisfied with such effect;</c>\n"
+				"<cr>Or click No for now in case you hate game crash all the time (will directly hide frames).</c>",
+				"No for now", "Yes please", 450.f,
 				[this, sender] (FLAlertLayer*, bool yes) {
-					if (yes)
-						Mod::get()->setSettingValue("frame-opacity", 0);
+					Mod::get()->setSettingValue("replace-frames", yes);
+					Mod::get()->setSettingValue("frame-opacity", 144 * yes);
+
 					LevelSearchLayer::onBack(sender);
 				}
 			);
