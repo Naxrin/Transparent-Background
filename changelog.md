@@ -1,3 +1,7 @@
+# 4.6.3
+- Add background option to Geode mods browser page
+- Polish codes
+
 # 4.6.2
 - Replace those blue frames to NineSlice and make the black frames look not weird.
 - **Turn OFF the Replace Frames option if your game crashes at level search menu (LevelSearchLayer) or edit level entrance menu (EditLevelLayer), and report it to me.**

@@ -36,7 +36,8 @@ class $modify(MenuLayer) {
 			bg->setID("background"_spr);
 			this->addChild(bg);
 			// HIDE BASEGAMELAYER
-			if (this->m_menuGameLayer) this->m_menuGameLayer->setVisible(false);
+			if (this->m_menuGameLayer)
+				this->m_menuGameLayer->setVisible(false);
 		}
 		return true;
     }
@@ -88,7 +89,6 @@ class $modify(CreatorLayer) {
 				tryReplace(bg, "layers", "CreatorLayer");
 				bg->setColor(ccc3(255, 255, 255));
 			}
-
 		return true;
     }
 };
@@ -220,7 +220,6 @@ class $modify(LevelInfoLayer) {
 			sp1->setColor(black);
 			sp2->setColor(black);
 			m_progressTimer->setColor(white);
-			
 		}
     }
 };

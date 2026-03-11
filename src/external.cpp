@@ -1,6 +1,21 @@
 #include <alphalaneous.alphas_geode_utils/include/ObjectModify.hpp>
 #include "head.hpp"
 
+// Geode
+class $nodeModify(ModsLayer) {
+	void modify() {
+		if (!Mod::get()->getSettingValue<bool>("BG") || !Mod::get()->getSettingValue<bool>("geode")) return;
+		auto bg = geode::createLayerBG();
+		tryReplace(bg, "layers", "geode.loader-ModsLayer");
+		bg->setColor(ccc3(255, 255, 255));
+		bg->setZOrder(-2);
+		bg->setID("background"_spr);
+		this->addChild(bg);
+		if (auto swelvy = this->getChildByID("SwelvyBG"))
+			swelvy->setVisible(false);
+	}
+};
+
 // Texture Loader
 class $nodeModify(PackSelectLayer) {
 	void modify() {
