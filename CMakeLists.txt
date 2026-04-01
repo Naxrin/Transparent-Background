@@ -14,6 +14,7 @@ add_library(${PROJECT_NAME} SHARED
     src/main.cpp
     src/external.cpp
     src/head.hpp
+    src/ui.cpp
 )
 
 if (NOT DEFINED ENV{GEODE_SDK})

@@ -5,6 +5,13 @@ using namespace geode::prelude;
 
 const auto CONFIG = Mod::get()->getConfigDir();
 
+static bool already_has_menu; // the menu is launched
+static std::string layerName;
+static std::string levelName;
+static std::string listName;
+static std::string timelyName; // one of : daily weekly event gauntlet
+static std::string gauntletName; // gauntlet map
+
 const static std::vector<std::string> gauntletIndex = {
     "Fire", "Ice", "Poison", "Shadow", "Lava", "Bonus", "Chaos", "Demon", "Time",
     "Crystal", "Magic", "Spike", "Monster", "Doom", "Death", "Forest", "Rune", "Force",

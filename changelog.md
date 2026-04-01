@@ -1,3 +1,6 @@
+# 4.7.0
+- Add a background UI so the in-game background change is easier to use i hope
+
 # 4.6.3
 - Add background option to Geode mods browser page
 - Polish codes

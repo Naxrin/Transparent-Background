@@ -371,3 +371,12 @@ class $modify(GauntletLayer) {
 		return true;
     }
 };
+
+$execute {
+	listenForKeybindSettingPresses("menu", [](Keybind const& keybind, bool down, bool repeat, double dt) {
+		// mute the event in play layer and level editor layer or in case the menu is already here
+		if (down || already_has_menu || PlayLayer::get() || LevelEditorLayer::get())
+			return;
+		
+	});
+}

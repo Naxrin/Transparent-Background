@@ -1,6 +1,8 @@
 # Transparent Background
-This mod removes stupid blue blending of background image in several menu pages and let us enjoy our anime ~~porns~~ backgrounds more
-Check settings menu for more perhaps favoured features
+This mod removes the stupid blue blending of background image in several menu pages and let us enjoy our anime ~~porns~~ backgrounds more
+Check settings menu for more perhaps favoured features  
+  
+**Turn OFF the Replace Frames option if your game crashes at level search menu (LevelSearchLayer) or edit level entrance menu (EditLevelLayer), and report it to me.**
 
 ### Pick background separately
 - Firstly, all following paths start from this mod's config folder. $CONFIG refers to this config folder;
