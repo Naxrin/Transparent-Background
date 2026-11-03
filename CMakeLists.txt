@@ -12,9 +12,9 @@ project(Transparent VERSION 1.0.0)
 
 add_library(${PROJECT_NAME} SHARED
     src/main.cpp
-    src/external.cpp
+    # src/external.cpp
     src/head.hpp
-    src/ui.cpp
+    # src/ui.cpp
 )
 
 if (NOT DEFINED ENV{GEODE_SDK})

@@ -19,7 +19,7 @@ const static std::vector<std::string> gauntletIndex = {
     "Toxic", "Halloween", "Treasure", "Ghost", "Spider", "Gem", "Inferno", "Portal", "Strange",
     "Fantasy", "Christmas", "Surprise", "Mystery", "Cursed", "Cyborg", "Castle", "Grave", "Temple",
     "World", "Galaxy", "Universe", "Discord", "Split", "NCS I", "NCS II", "Space", "Cosmos",
-    "Random", "Chance", "Future", "Utopia", "Cinema", "Love" // 2.208 addition
+    "Random", "Chance", "Future", "Utopia", "Cinema", "Love", "Duality", "Paradox" // addition
 };
 
 static bool tryReplace(CCSprite* spr, std::string subFolder, std::string fileName) {
@@ -35,7 +35,7 @@ static bool tryReplace(CCSprite* spr, std::string subFolder, std::string fileNam
         break;
     }
     auto p = CONFIG / subFolder / (fileName + qtext + ".png");
-    if (!std::filesystem::exists(p))
+    if (!p.exists())
         return false;
     auto ref = CCSprite::create(p.string().c_str());
     if (!ref)
@@ -43,3 +43,33 @@ static bool tryReplace(CCSprite* spr, std::string subFolder, std::string fileNam
     spr->setDisplayFrame(ref->displayFrame());
     return true;
 }
+
+/*
+class BackgroundPopup : public Popup {
+protected:
+    // sprite
+    CCSprite* sprBG;
+    // buttons
+    CCMenuItemSpriteExtra* btnPick, *btnRemove, * btnLayer, * btnTimely, * btnLevel;
+    // init
+    bool init();
+    // place the image
+    bool placeImage();
+    // switch between tabs
+    void onTab(CCObject* sender);
+    // pick an image
+    void onPick(CCObject* sender);
+    // remove an image
+    void onRemove(CCObject* sender);
+public:
+    BackgroundPopup* create() {
+        auto layer = new BackgroundPopup();
+
+        if (layer && layer->init()) {
+            layer->autorelease();
+            return layer;
+        };
+        CC_SAFE_DELETE(layer);
+        return nullptr;
+    }
+};*/

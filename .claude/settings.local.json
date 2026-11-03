@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(git checkout:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m 'Move current code to ui branch:*)",
+      "Bash(git push:*)"
     ]
   }
 }
