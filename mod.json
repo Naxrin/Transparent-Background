@@ -6,11 +6,11 @@
 		"mac":"2.2091",
 		"ios":"2.2091"
 	},
-	"version": "v5.7.0-beta.1",
+	"version": "v5.8.0-beta.1",
 	"id": "naxrin.transparent",
-	"name": "Transparent Background",
+	"name": "Wallpaper Wizard",
 	"developer": "Naxrin",
-	"description": "Transparent wallpapers",
+	"description": "Transparent Background :/",
 	"links": {
 		"source": "https://github.com/Naxrin/Transparent-Background"
 	},
@@ -23,6 +23,13 @@
 		}
 	},
 	"settings": {
+		"menu": {
+			"name": "Background Picker",
+			"description": "Press this key in a menu to open the background picker for the current screen.",
+			"type": "keybind",
+			"default": "F7",
+			"category": "universal"
+		},
 		"BG": {
             "name": "Switch",
             "description": "Removes the blue blendings of Background.",
@@ -116,6 +123,23 @@
 		"dark": {
 			"name": "Dark Timely/Event/Gauntlets",
 			"description": "Set the background of Gauntlet levels and Daily/Weekly/Event Levels darker, to make them look different from general levels from search engine",
+			"type": "bool",
+			"default": true
+		},
+		"management": {
+			"name": "Background Management",
+			"description": "Automatic cleanup and copying of per-level and per-list backgrounds.",
+			"type":"title"
+		},
+		"clear-saved-backgrounds": {
+			"name": "Clear Saved Backgrounds",
+			"description": "When a saved level or list is deleted, also clear its dedicated background.\nEditor levels and lists are always cleared.",
+			"type": "bool",
+			"default": true
+		},
+		"copy-background-on-clone": {
+			"name": "Copy Background on Clone",
+			"description": "When cloning a level or list into the editor, copy its dedicated background to the clone.",
 			"type": "bool",
 			"default": true
 		},

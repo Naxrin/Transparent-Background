@@ -1,3 +1,13 @@
+# 5.8.0-beta.1
+
+- Bump version to geode 6.x @ GD 2.2091
+- Background picker rework with a user-friendly popup!
+  - Switch wallpers in-game with Fade transitions
+  - Optional Stretch / Fit / Fill placement
+- The Safe's background tint is controlled by the mod (gray for Daily/Weekly with Dark on, white otherwise)
+- Cloning a level (level info page or editor) or a list can copy its dedicated background (optional)
+- Deleting a level/list clears its dedicated background (optional for saved levels/lists)
+
 # 4.7.0
 - Add a background UI so the in-game background change is easier to use i hope
 
